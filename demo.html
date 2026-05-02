@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Try Mintt live — see how the AI agent responds for an electrical contractor and electrical distributor.">
+<title>Live Demo — Mintt.ca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--green:#00c96b;--green-dark:#00a356;--green-light:#e6fff3;--black:#080f0a;--off-black:#0d1a12;--white:#ffffff;--grey:#6b7a72;--light:#f4faf6;--border:rgba(0,201,107,0.15);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Outfit',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,15,10,0.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,201,107,0.1);}
+.nav-logo{font-size:22px;font-weight:800;letter-spacing:-0.5px;color:var(--white);text-decoration:none;}
+.nav-logo span{color:var(--green);}
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-links a{font-size:14px;font-weight:500;color:rgba(255,255,255,0.5);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--green);}
+.nav-cta{background:var(--green);color:var(--black);padding:10px 22px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;}
+
+/* HERO */
+.demo-hero{padding:120px 40px 60px;text-align:center;position:relative;overflow:hidden;}
+.demo-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(0,201,107,0.14) 0%,transparent 70%);}
+.demo-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,201,107,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,201,107,0.05) 1px,transparent 1px);background-size:60px 60px;}
+.demo-hero-inner{max-width:800px;margin:0 auto;position:relative;z-index:1;}
+.section-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--green);margin-bottom:12px;}
+h1{font-size:clamp(36px,5vw,58px);font-weight:900;letter-spacing:-2px;margin-bottom:16px;line-height:1.1;}
+h1 span{color:var(--green);}
+.hero-sub{font-size:17px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:40px;}
+
+/* PERSONA SWITCHER */
+.persona-switch{display:flex;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:100px;padding:5px;gap:5px;display:inline-flex;margin-bottom:48px;}
+.persona-btn{padding:10px 28px;border-radius:100px;border:none;font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .25s;background:transparent;color:rgba(255,255,255,0.5);}
+.persona-btn.active{background:var(--green);color:var(--black);}
+.persona-btn:hover:not(.active){color:var(--white);}
+
+/* DEMO AREA */
+.demo-area{padding:0 40px 80px;max-width:1200px;margin:0 auto;}
+.demo-layout{display:grid;grid-template-columns:1fr 420px;gap:40px;align-items:start;}
+
+/* LEFT — Context panel */
+.context-panel{position:sticky;top:90px;}
+.context-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(0,201,107,0.1);border:1px solid rgba(0,201,107,0.2);color:var(--green);padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;margin-bottom:20px;}
+.context-panel h2{font-size:28px;font-weight:800;letter-spacing:-1px;margin-bottom:12px;line-height:1.2;}
+.context-panel p{font-size:15px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:28px;}
+.context-panel h3{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,0.3);margin-bottom:14px;}
+.suggested-questions{display:flex;flex-direction:column;gap:8px;margin-bottom:32px;}
+.sq-btn{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 16px;font-family:'Outfit',sans-serif;font-size:13px;color:rgba(255,255,255,0.7);cursor:pointer;text-align:left;transition:all .2s;line-height:1.4;}
+.sq-btn:hover{background:rgba(0,201,107,0.08);border-color:rgba(0,201,107,0.2);color:var(--white);}
+.sq-btn::before{content:'→ ';color:var(--green);}
+.what-mintt-shows{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:20px;}
+.what-mintt-shows h4{font-size:13px;font-weight:700;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;}
+.feature-pill{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;color:rgba(255,255,255,0.6);}
+.feature-pill:last-child{border-bottom:none;}
+.feature-pill .icon{font-size:16px;width:24px;text-align:center;flex-shrink:0;}
+
+/* RIGHT — Chat window */
+.chat-window{background:var(--white);border-radius:20px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.08);}
+.chat-header{padding:16px 18px;display:flex;align-items:center;gap:12px;}
+.chat-header.contractor{background:linear-gradient(135deg,#0a1628,#1a2d4a);}
+.chat-header.distributor{background:linear-gradient(135deg,#080f0a,#0d2416);}
+.ch-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.ch-avatar.contractor{background:linear-gradient(135deg,#1a6bcc,#4db6e8);}
+.ch-avatar.distributor{background:linear-gradient(135deg,#00a356,#00c96b);}
+.ch-info{flex:1;}
+.ch-name{font-size:14px;font-weight:700;color:white;}
+.ch-status{display:flex;align-items:center;gap:5px;margin-top:2px;}
+.ch-dot{width:6px;height:6px;background:#4ade80;border-radius:50%;animation:pls 2s infinite;}
+@keyframes pls{0%,100%{opacity:1}50%{opacity:.4}}
+.ch-online{font-size:11px;color:rgba(255,255,255,.5);}
+.ch-reset{background:rgba(255,255,255,.1);border:none;color:rgba(255,255,255,.6);font-size:11px;font-family:'Outfit',sans-serif;font-weight:500;padding:5px 10px;border-radius:6px;cursor:pointer;transition:all .2s;}
+.ch-reset:hover{background:rgba(255,255,255,.2);color:white;}
+.chat-messages{height:360px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:#f7fdf9;}
+.chat-messages::-webkit-scrollbar{width:4px;}
+.chat-messages::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:2px;}
+.msg{max-width:84%;padding:11px 14px;border-radius:14px;font-size:13.5px;line-height:1.6;word-break:break-word;}
+.msg.agent{align-self:flex-start;background:white;color:#080f0a;border-bottom-left-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,.07);}
+.msg.agent.contractor-theme{border-left:3px solid #4db6e8;}
+.msg.agent.distributor-theme{border-left:3px solid #00c96b;}
+.msg.user{align-self:flex-end;color:white;border-bottom-right-radius:4px;font-weight:500;}
+.msg.user.contractor-theme{background:linear-gradient(135deg,#1a6bcc,#4db6e8);}
+.msg.user.distributor-theme{background:linear-gradient(135deg,#00a356,#00c96b);}
+.typing{align-self:flex-start;background:white;padding:12px 16px;border-radius:14px;border-bottom-left-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,.07);}
+.typing-dots{display:flex;gap:4px;}
+.typing-dots span{width:6px;height:6px;border-radius:50%;animation:typ 1.4s infinite;}
+.contractor-theme .typing-dots span{background:#4db6e8;}
+.distributor-theme .typing-dots span{background:#00c96b;}
+.typing-dots span:nth-child(2){animation-delay:.2s}.typing-dots span:nth-child(3){animation-delay:.4s}
+@keyframes typ{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-6px);opacity:1}}
+.faq-bar{padding:10px 12px;background:white;border-top:1px solid #e5e7eb;display:flex;gap:6px;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none;}
+.faq-bar::-webkit-scrollbar{display:none;}
+.faq-pill{white-space:nowrap;padding:6px 12px;border-radius:100px;font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid;transition:all .2s;font-family:'Outfit',sans-serif;}
+.faq-pill.contractor-pill{background:#f0f7ff;border-color:#bfdbfe;color:#1d4ed8;}
+.faq-pill.contractor-pill:hover{background:#1a6bcc;color:white;border-color:#1a6bcc;}
+.faq-pill.distributor-pill{background:#f0fdf4;border-color:#bbf7d0;color:#15803d;}
+.faq-pill.distributor-pill:hover{background:#00c96b;color:white;border-color:#00c96b;}
+.chat-input-bar{display:flex;gap:8px;padding:10px 12px;border-top:1px solid #e5e7eb;background:white;align-items:center;}
+.chat-input{flex:1;border:1.5px solid #e5e7eb;border-radius:10px;padding:10px 14px;font-size:14px;font-family:'Outfit',sans-serif;outline:none;transition:all .2s;background:#fafafa;min-width:0;color:#080f0a;}
+.chat-input.contractor-input:focus{border-color:#4db6e8;}
+.chat-input.distributor-input:focus{border-color:#00c96b;}
+.chat-send{width:36px;height:36px;border-radius:10px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;}
+.chat-send.contractor-send{background:linear-gradient(135deg,#1a6bcc,#4db6e8);}
+.chat-send.distributor-send{background:linear-gradient(135deg,#00a356,#00c96b);}
+.chat-send:hover{transform:scale(1.06);}
+.chat-send svg{width:15px;height:15px;}
+.powered-bar{text-align:center;padding:8px;font-size:11px;color:#9ca3af;background:white;border-top:1px solid #f3f4f6;}
+.powered-bar a{color:var(--green);text-decoration:none;font-weight:600;}
+
+/* HOW THIS WORKS BANNER */
+.demo-note{max-width:1200px;margin:0 auto 48px;padding:0 40px;}
+.note-banner{background:rgba(0,201,107,0.06);border:1px solid rgba(0,201,107,0.15);border-radius:14px;padding:18px 24px;display:flex;align-items:flex-start;gap:14px;}
+.note-banner .icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.note-banner p{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.6;}
+.note-banner strong{color:var(--white);}
+
+/* CTA */
+.demo-cta{padding:80px 40px;text-align:center;position:relative;}
+.demo-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 100% at 50% 100%,rgba(0,201,107,0.12) 0%,transparent 70%);}
+.demo-cta-inner{max-width:600px;margin:0 auto;position:relative;z-index:1;}
+.demo-cta h2{font-size:44px;font-weight:900;letter-spacing:-2px;margin-bottom:14px;}
+.demo-cta h2 span{color:var(--green);}
+.demo-cta p{font-size:17px;color:rgba(255,255,255,0.5);margin-bottom:32px;line-height:1.6;}
+.btn-primary{background:var(--green);color:var(--black);padding:16px 36px;border-radius:10px;font-size:16px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px;box-shadow:0 0 40px rgba(0,201,107,0.25);transition:all .2s;}
+.btn-primary:hover{background:#00e87a;transform:translateY(-2px);}
+
+footer{background:var(--off-black);padding:40px;border-top:1px solid rgba(0,201,107,0.08);text-align:center;}
+.footer-logo{font-size:18px;font-weight:800;color:var(--white);margin-bottom:10px;}
+.footer-logo span{color:var(--green);}
+.footer-links{display:flex;gap:20px;justify-content:center;margin-bottom:12px;flex-wrap:wrap;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.footer-links a:hover{color:var(--green);}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.2);}
+
+@media(max-width:900px){
+  .demo-layout{grid-template-columns:1fr;}
+  .context-panel{position:static;}
+}
+@media(max-width:480px){
+  nav{padding:0 20px;}.nav-links{display:none;}
+  .demo-hero{padding:100px 20px 40px;}
+  .demo-area{padding:0 20px 60px;}
+  .demo-note{padding:0 20px;}
+}
+
+/* ── DARK MODE VARS ── */
+:root,[data-theme="light"]{
+  --green:#00c96b;--green-dark:#00a356;--green-light:#e6fff3;--green-mid:#00e87a;
+  --black:#080f0a;--off-black:#0d1a12;--white:#ffffff;--grey:#6b7a72;
+  --light:#f4faf6;--border:rgba(0,201,107,0.15);
+  --bg:#ffffff;--surface:#f4faf6;--text:#080f0a;--text-muted:#6b7a72;
+  --nav-bg:rgba(255,255,255,0.92);--nav-border:rgba(0,201,107,0.15);
+  --card-bg:#ffffff;--card-border:rgba(0,201,107,0.15);
+  --input-bg:#fafafa;--input-border:#e5e7eb;
+}
+
+/* Theme toggle button */
+#theme-toggle{
+  background:transparent;border:1.5px solid var(--border);
+  border-radius:50%;width:36px;height:36px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;transition:all .2s;flex-shrink:0;
+}
+#theme-toggle:hover{border-color:var(--green);background:var(--green-light);}
+
+
+/* ══════════════════════════════════════
+   DARK MODE — COMPLETE OVERRIDE SYSTEM
+   Never remaps --black/--white/--light
+   Uses explicit selectors instead
+   ══════════════════════════════════════ */
+[data-theme="dark"] {
+  --bg: #0a0f0c;
+  --surface: #111a14;
+  --text: #e8f5ec;
+  --text-muted: #7a9e82;
+  --nav-bg: rgba(10,15,12,0.97);
+  --card-bg: #111a14;
+  --input-bg: #0d1a10;
+  --input-border: rgba(0,201,107,0.25);
+  --border: rgba(0,201,107,0.15);
+}
+
+/* Base */
+[data-theme="dark"] body { background: #0a0f0c; color: #e8f5ec; }
+
+/* Nav */
+[data-theme="dark"] nav { background: rgba(10,15,12,0.97); border-bottom-color: rgba(0,201,107,0.12); }
+[data-theme="dark"] .nav-logo { color: #e8f5ec; }
+[data-theme="dark"] .nav-links a { color: #7a9e82; }
+[data-theme="dark"] .nav-links a:hover { color: var(--green); }
+
+/* Typography — all light-bg sections */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4 { color: #e8f5ec; }
+[data-theme="dark"] p { color: #7a9e82; }
+[data-theme="dark"] .section-title { color: #e8f5ec !important; }
+[data-theme="dark"] .section-sub { color: #7a9e82 !important; }
+[data-theme="dark"] .section-label { color: var(--green) !important; }
+
+/* Hero — keep dark even in dark mode */
+[data-theme="dark"] .hero { background: #050a07; }
+[data-theme="dark"] h1 .line2 { color: rgba(255,255,255,0.45) !important; }
+[data-theme="dark"] .hero-sub { color: rgba(255,255,255,0.55) !important; }
+[data-theme="dark"] .hero-stat .num { color: #e8f5ec; }
+[data-theme="dark"] .hero-stat .lbl { color: rgba(255,255,255,0.35); }
+[data-theme="dark"] .btn-ghost { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.2); }
+
+/* Social proof bar */
+[data-theme="dark"] .social-proof-bar { background: rgba(0,201,107,0.04) !important; border-bottom-color: rgba(0,201,107,0.1) !important; }
+
+/* Chat preview section */
+[data-theme="dark"] .chat-preview { background: #111a14; }
+[data-theme="dark"] .chat-window { background: #0a0f0c; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .chat-bubble.agent { background: #111a14; color: #e8f5ec; }
+[data-theme="dark"] .chat-powered { color: #7a9e82; border-top-color: rgba(0,201,107,0.1); }
+
+/* Problem section */
+[data-theme="dark"] .problem { background: #0a0f0c; }
+[data-theme="dark"] .problem-item { background: #111a14; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .problem-item h4 { color: #e8f5ec; }
+[data-theme="dark"] .problem-item p { color: #7a9e82; }
+[data-theme="dark"] .stat-card-sm { background: #111a14; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .stat-card-sm .sm-desc { color: #7a9e82; }
+
+/* Features section */
+[data-theme="dark"] .features { background: #0a0f0c; }
+[data-theme="dark"] .feature { background: #111a14; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .feature h3 { color: #e8f5ec; }
+[data-theme="dark"] .feature p { color: #7a9e82; }
+[data-theme="dark"] .feature-icon { background: rgba(0,201,107,0.12); }
+
+/* Social proof / testimonials */
+[data-theme="dark"] .proof { background: #111a14; }
+[data-theme="dark"] .testimonial { background: #0a0f0c; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .tquote { color: #e8f5ec; }
+[data-theme="dark"] .tname { color: #e8f5ec; }
+[data-theme="dark"] .trole { color: #7a9e82; }
+
+/* FAQ */
+[data-theme="dark"] .faq-item { background: #111a14; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .faq-q { color: #e8f5ec; }
+[data-theme="dark"] .faq-a { color: #7a9e82; }
+[data-theme="dark"] .faq-icon { color: var(--green); }
+
+/* Comparison table */
+[data-theme="dark"] .compare { background: #0a0f0c; }
+[data-theme="dark"] .compare h2 { color: #e8f5ec; }
+[data-theme="dark"] .compare > .compare-inner > p { color: #7a9e82; }
+[data-theme="dark"] .compare-table th { background: #111a14; color: #7a9e82; border-bottom-color: rgba(0,201,107,0.2); }
+[data-theme="dark"] .compare-table td { color: #e8f5ec; border-bottom-color: rgba(0,201,107,0.08); }
+[data-theme="dark"] .compare-table .row-group td { background: #0d1a10; color: #7a9e82; }
+[data-theme="dark"] .compare-table tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+[data-theme="dark"] .cmp-row:nth-child(even) { background: rgba(255,255,255,0.02); }
+[data-theme="dark"] .cmp-feat { color: #e8f5ec; }
+
+/* Pricing plans */
+[data-theme="dark"] .plans { background: #111a14; }
+[data-theme="dark"] .plan { background: #0a0f0c; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .plan .plan-name { color: #7a9e82; }
+[data-theme="dark"] .plan .price-amount { color: #e8f5ec; }
+[data-theme="dark"] .plan .price-period { color: #7a9e82; }
+[data-theme="dark"] .plan .plan-desc { color: #7a9e82; border-bottom-color: rgba(0,201,107,0.1); }
+[data-theme="dark"] .plan .plan-features li { color: #e8f5ec; }
+[data-theme="dark"] .plan .plan-features li.disabled { color: #7a9e82; opacity: 0.5; }
+[data-theme="dark"] .plan-cta.outline { color: #e8f5ec; border-color: rgba(0,201,107,0.25); }
+[data-theme="dark"] .plan-cta.outline:hover { color: var(--green); border-color: var(--green); }
+[data-theme="dark"] .toggle-wrap { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); }
+[data-theme="dark"] .toggle-btn { color: rgba(255,255,255,0.5); }
+
+/* Contact page */
+[data-theme="dark"] .contact-page { background: #050a07; }
+[data-theme="dark"] .contact-form-wrap { background: #111a14; }
+[data-theme="dark"] .contact-form-wrap h2 { color: #e8f5ec; }
+[data-theme="dark"] .contact-form-wrap > p { color: #7a9e82; }
+[data-theme="dark"] .form-group label { color: #7a9e82; }
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group select,
+[data-theme="dark"] .form-group textarea { background: #0d1a10; border-color: rgba(0,201,107,0.2); color: #e8f5ec; }
+[data-theme="dark"] .form-group input::placeholder,
+[data-theme="dark"] .form-group textarea::placeholder { color: #7a9e82; }
+[data-theme="dark"] .what-to-expect h4 { color: #e8f5ec; }
+
+/* ROI calculator */
+[data-theme="dark"] section[style*="background:var(--light)"],
+[data-theme="dark"] .roi-section { background: #111a14 !important; }
+
+/* Footer */
+[data-theme="dark"] footer { background: #050a07 !important; }
+
+/* Auth pages */
+[data-theme="dark"] .auth-card { background: #111a14; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .auth-card h2 { color: #e8f5ec; }
+[data-theme="dark"] .auth-card .sub { color: #7a9e82; }
+[data-theme="dark"] .plan-pill { border-color: rgba(0,201,107,0.2); }
+[data-theme="dark"] .plan-pill .pname { color: #e8f5ec; }
+[data-theme="dark"] .plan-pill.selected { background: rgba(0,201,107,0.1); }
+[data-theme="dark"] label { color: #7a9e82; }
+[data-theme="dark"] input,
+[data-theme="dark"] select { background: #0d1a10; border-color: rgba(0,201,107,0.2); color: #e8f5ec; }
+[data-theme="dark"] input::placeholder { color: #7a9e82; }
+[data-theme="dark"] .divider-text { color: #7a9e82; background: #111a14; }
+[data-theme="dark"] .divider-line { border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .login-link { color: #7a9e82; }
+[data-theme="dark"] .notice { background: rgba(0,201,107,0.08); border-color: rgba(0,201,107,0.2); }
+
+/* Inline dark sections stay dark */
+[data-theme="dark"] .how,
+[data-theme="dark"] .cta-section { background: #050a07; }
+
+/* Generic inline style overrides for light backgrounds */
+[data-theme="dark"] section[style*="background:var(--white)"] { background: #0a0f0c !important; }
+[data-theme="dark"] section[style*="background:var(--light)"] { background: #111a14 !important; }
+[data-theme="dark"] div[style*="background:var(--white)"] { background: #111a14 !important; }
+[data-theme="dark"] div[style*="background:#f"] { background: #111a14 !important; }
+[data-theme="dark"] div[style*="background:white"] { background: #111a14 !important; }
+
+
+[data-theme="dark"] body { background: #0a0f0c !important; color: #e8f5ec !important; }
+[data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3, [data-theme="dark"] h4 { color: #e8f5ec !important; }
+[data-theme="dark"] p { color: #7a9e82 !important; }
+[data-theme="dark"] footer { background: #050a07 !important; }
+[data-theme="dark"] nav { background: rgba(10,15,12,0.97) !important; }
+[data-theme="dark"] .nav-logo { color: #e8f5ec !important; }
+[data-theme="dark"] section[style*="background:var(--light)"] { background: #111a14 !important; }
+[data-theme="dark"] section[style*="background:var(--white)"] { background: #0a0f0c !important; }
+[data-theme="dark"] div[style*="background:white"] { background: #111a14 !important; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">mintt<span>.</span>ca</a>
+  <div class="nav-links">
+    <a href="index.html#how">How It Works</a>
+    <a href="index.html#features">Features</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="demo.html">Live Demo</a>
+    <a href="voice.html">Voice</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <button id="theme-toggle" title="Toggle dark mode">🌙</button>
+    <a href="login.html" id="nav-login" class="nav-cta" style="display:none;">Log In</a>
+    <a href="login.html" id="nav-dashboard" class="nav-cta" style="display:none;">Dashboard →</a>
+    <span id="nav-user-pill" style="display:none;background:var(--green);color:var(--black);padding:6px 14px;border-radius:100px;font-size:13px;font-weight:700;"></span>
+    <a href="signup.html" style="background:var(--green);color:var(--black);padding:10px 22px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s;" onmouseover="this.style.background='#00a356'" onmouseout="this.style.background='var(--green)'">Get Started →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="demo-hero">
+  <div class="demo-hero-inner">
+    <div class="section-label">Interactive Demo</div>
+    <h1>Try Mintt <span>live.</span><br>Pick your industry.</h1>
+    <p class="hero-sub">These are real AI agents — not scripted demos. Type any question you'd expect a customer to ask and see how Mintt responds.</p>
+    <div class="persona-switch">
+      <button class="persona-btn active" id="btn-contractor" onclick="setPersona('contractor')">⚡ Electrical Contractor</button>
+      <button class="persona-btn" id="btn-distributor" onclick="setPersona('distributor')">📦 Electrical Distributor</button>
+    </div>
+  </div>
+</section>
+
+<!-- NOTE -->
+<div class="demo-note">
+  <div class="note-banner">
+    <div class="icon">💡</div>
+    <p><strong>This is a live AI agent.</strong> It's trained on generic industry knowledge — not a specific company. In a real Mintt setup, it's trained on your products, pricing, brands, and services. Ask anything a real customer would ask.</p>
+  </div>
+</div>
+
+<!-- DEMO AREA -->
+<div class="demo-area">
+  <div class="demo-layout">
+
+    <!-- Context Panel -->
+    <div class="context-panel" id="context-panel">
+      <!-- Populated by JS -->
+    </div>
+
+    <!-- Chat Window -->
+    <div class="chat-window">
+      <div class="chat-header" id="chat-header">
+        <div class="ch-avatar" id="ch-avatar">⚡</div>
+        <div class="ch-info">
+          <div class="ch-name" id="ch-name">Electrical Contractor Agent</div>
+          <div class="ch-status">
+            <div class="ch-dot"></div>
+            <span class="ch-online">AI Agent — Online now</span>
+          </div>
+        </div>
+        <button class="ch-reset" onclick="resetChat()">↺ Reset</button>
+      </div>
+      <div class="chat-messages" id="chat-messages"></div>
+      <div class="faq-bar" id="faq-bar"></div>
+      <div class="chat-input-bar">
+        <input type="text" class="chat-input" id="chat-input" placeholder="Ask something a customer would ask..."/>
+        <button class="chat-send" id="chat-send" onclick="sendMsg()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+        </button>
+      </div>
+      <div class="powered-bar">Powered by <a href="https://mintt.ca">Mintt.ca</a> — AI Lead Agent</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="demo-cta">
+  <div class="demo-cta-inner">
+    <h2>Want this on<br><span>your website?</span></h2>
+    <p>Book a free 20-minute demo and we'll show you exactly how Mintt works for your business — and set it up live on your site.</p>
+    <a href="contact.html" class="btn-primary">Book a Free Demo →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">mintt<span>.</span>ca</div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="contact.html">Contact</a>
+    <a href="terms.html">Terms</a>
+    <a href="privacy.html">Privacy</a>
+  </div>
+  <div class="footer-copy">© 2026 Mintt — Ontario, Canada.</div>
+</footer>
+
+<script src="mintt-widget.js"></script>
+
+<script>
+var currentPersona = 'contractor';
+var isTyping = false;
+
+var personas = {
+  contractor: {
+    name: 'Electrical Contractor Agent',
+    avatar: '⚡',
+    headerClass: 'contractor',
+    theme: 'contractor-theme',
+    inputClass: 'contractor-input',
+    sendClass: 'contractor-send',
+    pillClass: 'contractor-pill',
+    tag: '⚡ Electrical Contractor',
+    title: 'See Mintt as an electrical contractor agent',
+    desc: 'This agent represents a commercial electrical contractor. It captures leads for panel upgrades, automation projects, emergency service, and new construction — without giving technical advice or quoting prices.',
+    welcome: "Hi! I'm here to connect you with our electrical team. Whether you're looking for panel work, automation, or emergency service — we can help.\n\nWhat can I assist you with today?",
+    faqs: ['Do you offer emergency service?','What are your business hours?','Can you upgrade my electrical panel?','Do you do building automation?','Do you handle new construction?','I need an electrician today'],
+    features: [
+      {icon:'🚨', text:'Detects emergency / urgent language instantly'},
+      {icon:'📞', text:'Captures name and phone for callback'},
+      {icon:'🔴', text:'HOT lead alert sent to your inbox immediately'},
+      {icon:'📋', text:'Collects project details — no form needed'},
+      {icon:'🛡️', text:'Never gives advice or quotes — protects your liability'}
+    ],
+    responses: {
+      emergency: [
+        "🚨 If there is immediate danger, call 911 or your utility emergency line now.\n⚡ Our team responds to electrical emergencies — what's the best number to reach you?",
+        "🚨 Electrical emergencies are treated as our highest priority.\n📞 What's your name and the best number to reach you immediately? Our team will call you back right away."
+      ],
+      panel: [
+        "📋 We handle all types of electrical panel work — upgrades, replacements, new service installations, and load centre conversions.\n📞 What's your name and best callback number so our estimator can follow up?",
+        "📋 Panel upgrades are one of our most common projects — residential, commercial, and industrial.\nA few questions help us prepare: Is this a service upgrade or a panel replacement? And what's the best number to reach you?"
+      ],
+      automation: [
+        "📋 We specialize in building automation, PLC programming, and controls integration for commercial and industrial facilities.\n📋 Projects range from basic BMS installations to full SCADA system integration.\n📞 What's the best number to reach you to discuss your project scope?",
+        "📋 Our controls team handles PLC, VFD integration, motor control centres, and building management systems.\n📞 What's your name and best number so our automation team can follow up?"
+      ],
+      service: [
+        "📋 We provide commercial and industrial electrical service — troubleshooting, repairs, maintenance contracts, and new installations.\n📞 What's your name and best number so our team can reach out?",
+        "📋 Our licensed electricians cover everything from single outlet repairs to full facility maintenance.\n📞 What's the best number to reach you and what's the job location?"
+      ],
+      area: [
+        "📋 We serve the Greater Toronto Area, Hamilton, Kitchener-Waterloo, and surrounding Ontario regions.\n📞 Can I get your name and best number to confirm service to your location?",
+        "📋 We cover a wide service area across Ontario — most of the province is within our reach.\n📞 What's your location and the best number to reach you?"
+      ],
+      hours: [
+        "📋 Office hours: Monday–Friday, 7:00am–5:00pm EST.\n⚡ Emergency service is available 24 hours a day, 7 days a week — including weekends and holidays.\n📞 What can we help you with today?",
+        "📋 We're available Monday to Friday during business hours.\n🚨 For after-hours emergencies, our team is on call 24/7.\n📞 What's the nature of your electrical need?"
+      ],
+      quote: [
+        "📋 Pricing is always determined by our team after a site assessment — every job is different.\n📞 What's the best number to reach you to arrange a visit from our estimator?",
+        "📋 We don't quote over the phone — our estimator will visit the site to give you an accurate number.\n📞 What's your name and best number to book that visit?"
+      ],
+      new_construction: [
+        "📋 We handle new construction electrical from rough-in through final inspection — residential, commercial, and industrial.\n📞 What's the project type and best number to reach you?",
+        "📋 New construction is a significant part of our work. We coordinate directly with GCs and project managers.\n📞 What's your name and role on the project, and the best number to reach you?"
+      ],
+      general: [
+        "📋 Our licensed team will be best positioned to help with that directly.\n📞 What's your name and best number to reach you?",
+        "📋 Noted — our team handles that on site.\n📞 What's the best number for our team to call you back?"
+      ]
+    }
+  },
+  distributor: {
+    name: 'Electrical Distributor Agent',
+    avatar: '📦',
+    headerClass: 'distributor',
+    theme: 'distributor-theme',
+    inputClass: 'distributor-input',
+    sendClass: 'distributor-send',
+    pillClass: 'distributor-pill',
+    tag: '📦 Electrical Distributor',
+    title: 'See Mintt as an electrical distributor agent',
+    desc: 'This agent represents an electrical products distributor. It answers product availability questions, handles quote requests, and captures contact info — without quoting specific prices or making recommendations.',
+    welcome: "Hi! I'm here to help with product availability, pricing inquiries, and quotes.\n\nWhat are you looking for today?",
+    faqs: ['Do you carry ABB drives?','I need a VFD for a 15HP 460V motor','What brands do you carry?','Do you have transformers in stock?','What are your shipping options?','Help me size a drive from nameplate'],
+    features: [
+      {icon:'📸', text:'Reads motor nameplate photos — matches HP, voltage, FLA to correct drive model'},
+      {icon:'📦', text:'Confirms product availability by brand and category'},
+      {icon:'💰', text:'Captures contact info for quote follow-up'},
+      {icon:'🏷️', text:'Knows your brands — ABB, Eaton, Weidmüller, Rittal and more'},
+      {icon:'🛡️', text:'Never quotes prices — routes all pricing to your team'}
+    ],
+    responses: {
+      abb: [
+        "✅ Yes, ABB is a line we carry.\n📋 ABB products we stock include:\n• ACS580 — general purpose VFDs (0.75–250kW)\n• ACS880 — industrial drives with full torque control\n• Motors, contactors, and switchgear\n📦 What frame size, HP, and voltage are you working with?"
+      ],
+      eaton: [
+        "✅ Yes, Eaton is a line we carry.\n📋 Eaton products include:\n• PowerXL DE1 — simple variable speed\n• PowerXL DG1 — full-featured industrial VFD\n• Breakers, panelboards, fusible disconnects, contactors\n📦 What product and specification are you looking for?"
+      ],
+      brands: [
+        "✅ Here are our main lines:\n\n⚡ Drives & Controls: ABB, Eaton PowerXL\n🔌 Wiring & Cable: Southwire, Atkore\n🔋 Terminal Blocks: Weidmüller\n🏠 Enclosures: Rittal, Techspan, Hammond\n🔧 Fusing: Eaton Bussmann\n💡 Lighting: RAB Design, Ledvance\n🏷️ Identification: Brady\n🔁 Relays: Finder\n🔗 Connectors: nVent ILSCO\n\n📦 What product are you looking to source?"
+      ],
+      pricing: [
+        "📋 Pricing depends on quantity, account type, and current market conditions.\n📧 What's the best email to send your quote to? Include the part number or spec if you have it.",
+        "📋 We don't publish list prices — our team provides quotes based on your volume and account.\n📧 What's the best email and the product you need priced?"
+      ],
+      stock: [
+        "📦 Stock levels and lead times are confirmed by our team — some items ship same day, others are 2–4 weeks depending on supply.\n📧 What's the part number and quantity? Share the best email and we'll confirm availability.",
+        "📦 Availability varies by product and manufacturer lead time.\n📧 What's the best email so our team can check stock and get back to you quickly?"
+      ],
+      transformer: [
+        "✅ Yes, we carry dry-type transformers from Hammond Power Solutions and Marcus Transformer.\n📋 Common specs we stock:\n• 1-phase and 3-phase configurations\n• 1 KVA to 1000 KVA\n• 208V / 240V / 480V / 600V primary\n📦 What KVA rating, primary voltage, and secondary voltage do you need?"
+      ],
+      enclosure: [
+        "✅ We carry Rittal and Techspan enclosures — steel, stainless steel, and fibreglass options.\n📋 Available types: wall-mount, floor-standing, junction boxes, disconnect enclosures.\n📦 What are the dimensions, material, and NEMA rating you need?"
+      ],
+      shipping: [
+        "📦 We offer local delivery, freight, and customer pickup depending on order size and location.\n📧 What's the best email and delivery address? Our team will confirm lead time and shipping options.",
+        "📦 Shipping options depend on order size and your location.\n📧 Share the best email and we'll get you shipping details with your quote."
+      ],
+      nameplate: [
+        "📸 Great — to match the right drive to this motor, I need a few specs from the nameplate:\n\n• Horsepower (HP) or kW\n• Voltage (e.g. 460V, 575V)\n• Phase (1-phase or 3-phase)\n• Full Load Amps (FLA)\n• RPM\n\nShare those and I'll confirm the compatible drive from our ABB or Eaton lineup. You can also upload a photo of the nameplate using the 📎 button on a Mintt-powered site.",
+        "📸 Motor nameplate sizing — I can help with that.\n\nFor a proper drive match I need: HP/kW, Voltage, Phase, Full Load Amps (FLA), and RPM.\n\nOnce I have those specs I'll confirm the right ABB ACS580 or Eaton PowerXL frame for your application."
+      ],
+      general: [
+        "📋 Let me get our team to follow up on that directly.\n📧 What's the best name and email?",
+        "✅ That's something our team can help with.\n📧 What's the best email to follow up with you?"
+      ]
+    }
+  }
+};
+
+function setPersona(persona) {
+  currentPersona = persona;
+  document.getElementById('btn-contractor').classList.toggle('active', persona === 'contractor');
+  document.getElementById('btn-distributor').classList.toggle('active', persona === 'distributor');
+  resetChat();
+  updateContextPanel();
+  updateChatHeader();
+}
+
+function updateChatHeader() {
+  var p = personas[currentPersona];
+  var header = document.getElementById('chat-header');
+  header.className = 'chat-header ' + p.headerClass;
+  document.getElementById('ch-avatar').className = 'ch-avatar ' + p.headerClass;
+  document.getElementById('ch-avatar').textContent = p.avatar;
+  document.getElementById('ch-name').textContent = p.name;
+
+  var input = document.getElementById('chat-input');
+  input.className = 'chat-input ' + p.inputClass;
+  document.getElementById('chat-send').className = 'chat-send ' + p.sendClass;
+
+  var faqBar = document.getElementById('faq-bar');
+  faqBar.innerHTML = '';
+  p.faqs.forEach(function(q) {
+    var btn = document.createElement('button');
+    btn.className = 'faq-pill ' + p.pillClass;
+    btn.textContent = q;
+    btn.onclick = function() { sendMsg(q); };
+    faqBar.appendChild(btn);
+  });
+}
+
+function updateContextPanel() {
+  var p = personas[currentPersona];
+  var panel = document.getElementById('context-panel');
+  panel.innerHTML =
+    '<div class="context-tag">' + p.tag + '</div>' +
+    '<h2>' + p.title + '</h2>' +
+    '<p>' + p.desc + '</p>' +
+    '<h3>Try asking</h3>' +
+    '<div class="suggested-questions">' +
+    p.faqs.slice(0,4).map(function(q) {
+      return '<button class="sq-btn" onclick="sendMsg(\'' + q.replace(/'/g, "\\'") + '\')">' + q + '</button>';
+    }).join('') +
+    '</div>' +
+    '<div class="what-mintt-shows">' +
+    '<h4>What this demo shows</h4>' +
+    p.features.map(function(f) {
+      return '<div class="feature-pill"><span class="icon">' + f.icon + '</span><span>' + f.text + '</span></div>';
+    }).join('') +
+    '</div>';
+}
+
+function resetChat() {
+  var msgs = document.getElementById('chat-messages');
+  msgs.innerHTML = '';
+  var p = personas[currentPersona];
+  addMsg(p.welcome, 'agent');
+}
+
+function getResponse(text) {
+  var msg = text.toLowerCase();
+  var p = personas[currentPersona];
+  var r = p.responses;
+
+  if (currentPersona === 'contractor') {
+    if (msg.match(/spark|fire|smoke|burning|shock|emergency|urgent|right now|immediately|no power|circuit down/)) return pick(r.emergency);
+    if (msg.match(/panel|breaker|service entrance|disconnect|upgrade|replace/)) return pick(r.panel);
+    if (msg.match(/automat|plc|controls|building automat|bms|scada/)) return pick(r.automation);
+    if (msg.match(/area|location|serve|cover|where/)) return pick(r.area);
+    if (msg.match(/hour|open|available|schedule|when/)) return pick(r.hours);
+    if (msg.match(/price|cost|quote|estimate|how much/)) return pick(r.quote);
+    if (msg.match(/service|electrician|electrical work|repair|fix|troubleshoot/)) return pick(r.service);
+    if (msg.match(/new construct|rough.in|build|new build|residential build|commercial build/)) return pick(r.new_construction);
+  } else {
+    if (msg.match(/transformer|kva|hammond|marcus/)) return pick(r.transformer);
+    if (msg.match(/abb|acs580|acs880|acs|motor drive/)) return pick(r.abb);
+    if (msg.match(/eaton|powerxl|de1|dg1/)) return pick(r.eaton);
+    if (msg.match(/enclosure|cabinet|panel board|box|rittal|techspan/)) return pick(r.enclosure);
+    if (msg.match(/ship|delivery|freight|courier|pickup/)) return pick(r.shipping);
+    if (msg.match(/nameplate|vfd|drive|motor size|hp|horsepower|fla|full load|frame/)) return pick(r.nameplate);
+    if (msg.match(/price|cost|quote|how much|pricing/)) return pick(r.pricing);
+    if (msg.match(/in stock|lead time|inventory|availability/)) return pick(r.stock);
+    if (msg.match(/brand|carry|catalog|what do you|what lines|what products/)) return pick(r.brands);
+  }
+
+  return pick(p.responses.general);
+}
+
+function pick(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function addMsg(text, role) {
+  var p = personas[currentPersona];
+  var msgs = document.getElementById('chat-messages');
+  var d = document.createElement('div');
+  d.className = 'msg ' + role + ' ' + p.theme;
+  d.innerHTML = text.replace(/\n/g, '<br>');
+  msgs.appendChild(d);
+  msgs.scrollTop = msgs.scrollHeight;
+  return d;
+}
+
+function showTyping() {
+  var p = personas[currentPersona];
+  var msgs = document.getElementById('chat-messages');
+  var d = document.createElement('div');
+  d.className = 'typing ' + p.theme; d.id = 'typing-ind';
+  d.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+  msgs.appendChild(d);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function hideTyping() {
+  var t = document.getElementById('typing-ind');
+  if (t) t.remove();
+}
+
+function sendMsg(text) {
+  var input = document.getElementById('chat-input');
+  var msg = text || input.value.trim();
+  if (!msg || isTyping) return;
+  input.value = '';
+  addMsg(msg, 'user');
+  isTyping = true;
+  showTyping();
+  var delay = 700 + Math.random() * 700;
+  setTimeout(function() {
+    hideTyping();
+    var response = getResponse(msg);
+    addMsg(response, 'agent');
+    isTyping = false;
+  }, delay);
+}
+
+document.getElementById('chat-input').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') { e.preventDefault(); sendMsg(); }
+});
+
+// Init
+setPersona('contractor');
+</script>
+
+<!-- Mintt Voice CTA -->
+<div id="mintt-call-btn" style="position:fixed;bottom:24px;left:24px;z-index:9999;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif">
+  <a href="tel:6475598674" style="text-decoration:none">
+    <div style="background:#10b981;border-radius:16px;padding:12px 18px;box-shadow:0 4px 20px rgba(16,185,129,0.4);cursor:pointer;display:flex;align-items:center;gap:12px" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='none'" style="transition:transform 0.2s">
+      <div style="width:40px;height:40px;background:rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.18 2 2 0 0 1 3.64 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.29 6.29l1.28-1.28a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </div>
+      <div>
+        <div style="color:#fff;font-size:12px;font-weight:600;opacity:0.85;margin-bottom:2px">Try our AI voice assistant</div>
+        <div style="color:#fff;font-size:16px;font-weight:700;letter-spacing:0.5px">647-559-8674</div>
+      </div>
+    </div>
+  </a>
+</div>
+<script src="mintt-shared.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mintt Voice — AI phone answering for trade businesses across Ontario. Never miss a lead when you're on a job, after hours, or your lines are full.">
+<meta property="og:title" content="Mintt Voice — Your Phone Line, Always On">
+<meta property="og:description" content="Mintt picks up when you can't. It qualifies callers, scores the lead, and alerts you instantly.">
+<title>Mintt Voice — Your Phone Line, Always On</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root,[data-theme="light"]{
+  --green:#00c96b;--green-dark:#00a356;--green-light:#e6fff3;
+  --black:#080f0a;--off-black:#0d1a12;--white:#ffffff;--grey:#6b7a72;
+  --light:#f4faf6;--border:rgba(0,201,107,0.15);
+  --bg:#ffffff;--surface:#f4faf6;--text:#080f0a;--text-muted:#6b7a72;
+  --nav-bg:rgba(255,255,255,0.92);--card-bg:#ffffff;
+  --input-bg:#fafafa;--input-border:#e5e7eb;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Outfit',sans-serif;background:#ffffff;color:#080f0a;overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-logo{font-size:22px;font-weight:800;letter-spacing:-0.5px;color:#080f0a;text-decoration:none;}
+.nav-logo span{color:var(--green);}
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-links a{font-size:14px;color:#6b7a72;text-decoration:none;font-weight:500;transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:#080f0a;}
+.nav-right{display:flex;align-items:center;gap:10px;}
+#theme-toggle{background:transparent;border:1.5px solid var(--border);border-radius:50%;width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .2s;}
+#theme-toggle:hover{border-color:var(--green);}
+.nav-cta-secondary{font-size:14px;font-weight:600;color:#080f0a;text-decoration:none;padding:10px 18px;}
+.nav-cta{background:var(--green);color:#080f0a;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s;}
+.nav-cta:hover{background:#00e87a;}
+
+/* ── HERO ── */
+.hero{min-height:100vh;background:#080f0a;display:flex;align-items:center;padding:100px 40px 80px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 65% at 85% 50%,rgba(0,201,107,0.09),transparent 70%);}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,201,107,0.2),transparent);}
+.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:1;}
+.hero-live-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,201,107,0.1);border:1px solid rgba(0,201,107,0.25);border-radius:100px;padding:6px 16px;font-size:11px;font-weight:600;color:var(--green);letter-spacing:.08em;text-transform:uppercase;margin-bottom:24px;}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:livepulse 2s infinite;}
+@keyframes livepulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.85);}}
+.hero h1{font-size:52px;font-weight:800;color:#ffffff;line-height:1.08;letter-spacing:-2px;margin-bottom:20px;}
+.hero h1 em{color:var(--green);font-style:normal;}
+.hero-sub{font-size:17px;color:rgba(255,255,255,0.48);line-height:1.75;max-width:480px;margin-bottom:36px;}
+.hero-btns{display:flex;gap:12px;margin-bottom:48px;flex-wrap:wrap;}
+.btn-primary{background:var(--green);color:#080f0a;padding:14px 28px;border-radius:8px;font-size:15px;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:all .2s;font-family:'Outfit',sans-serif;}
+.btn-primary:hover{background:#00e87a;transform:translateY(-1px);}
+.btn-ghost{background:transparent;color:rgba(255,255,255,0.7);padding:14px 22px;border-radius:8px;font-size:15px;font-weight:600;border:1px solid rgba(255,255,255,0.15);cursor:pointer;transition:all .2s;font-family:'Outfit',sans-serif;}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.35);color:#fff;}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.hero-stat{background:rgba(255,255,255,0.04);border:1px solid rgba(0,201,107,0.14);border-radius:12px;padding:18px 20px;}
+.hero-stat-num{font-size:30px;font-weight:800;color:var(--green);letter-spacing:-1px;line-height:1;}
+.hero-stat-lbl{font-size:11px;color:rgba(255,255,255,0.28);text-transform:uppercase;letter-spacing:.07em;margin-top:5px;}
+
+/* Hero right — phone mockup */
+.phone-mockup{background:rgba(255,255,255,0.04);border:1px solid rgba(0,201,107,0.15);border-radius:24px;padding:28px;max-width:340px;margin:0 auto;}
+.phone-top{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.phone-avatar{width:40px;height:40px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#080f0a;flex-shrink:0;}
+.phone-name{font-size:14px;font-weight:700;color:#fff;}
+.phone-status{font-size:11px;color:var(--green);margin-top:2px;}
+.phone-msg{border-radius:12px;padding:12px 16px;font-size:13px;line-height:1.6;margin-bottom:8px;}
+.phone-msg.caller{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.75);border-radius:12px 12px 12px 3px;}
+.phone-msg.mintt{background:var(--green);color:#080f0a;border-radius:12px 12px 3px 12px;margin-left:20px;}
+.phone-label{font-size:10px;color:rgba(255,255,255,0.25);margin-bottom:4px;letter-spacing:.04em;}
+.phone-label.right{text-align:right;margin-right:4px;}
+.phone-score{display:flex;align-items:center;gap:8px;margin-top:16px;padding:10px 14px;background:rgba(255,107,107,0.1);border:1px solid rgba(255,107,107,0.2);border-radius:8px;}
+.score-dot{width:8px;height:8px;border-radius:50%;background:#ff6b6b;flex-shrink:0;}
+.score-text{font-size:12px;font-weight:600;color:#ff8f8f;}
+
+/* ── AUDIO PLAYER ── */
+.audio-section{background:#f4faf6;padding:60px 40px;}
+.audio-inner{max-width:700px;margin:0 auto;text-align:center;}
+.audio-label{font-size:11px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;}
+.audio-inner h2{font-size:30px;font-weight:800;color:#080f0a;letter-spacing:-.8px;margin-bottom:8px;}
+.audio-inner p{font-size:15px;color:#6b7a72;margin-bottom:32px;line-height:1.6;}
+.audio-player{background:#ffffff;border:1.5px solid rgba(0,201,107,0.2);border-radius:16px;padding:24px 28px;display:flex;align-items:center;gap:20px;}
+.play-btn{width:52px;height:52px;border-radius:50%;background:var(--green);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;font-size:20px;}
+.play-btn:hover{background:#00e87a;transform:scale(1.05);}
+.audio-info{flex:1;text-align:left;}
+.audio-title{font-size:14px;font-weight:700;color:#080f0a;margin-bottom:4px;}
+.audio-desc{font-size:12px;color:#6b7a72;}
+.audio-wave{display:flex;align-items:center;gap:3px;height:32px;}
+.audio-wave span{display:block;width:3px;border-radius:2px;background:rgba(0,201,107,0.3);animation:wave 1.2s ease-in-out infinite;}
+.audio-wave span:nth-child(1){height:8px;animation-delay:0s;}
+.audio-wave span:nth-child(2){height:18px;animation-delay:.1s;}
+.audio-wave span:nth-child(3){height:28px;animation-delay:.2s;}
+.audio-wave span:nth-child(4){height:18px;animation-delay:.3s;}
+.audio-wave span:nth-child(5){height:12px;animation-delay:.4s;}
+.audio-wave span:nth-child(6){height:24px;animation-delay:.15s;}
+.audio-wave span:nth-child(7){height:16px;animation-delay:.25s;}
+.audio-wave span:nth-child(8){height:8px;animation-delay:.35s;}
+@keyframes wave{0%,100%{transform:scaleY(1);}50%{transform:scaleY(.4);}}
+.audio-wave.paused span{animation-play-state:paused;}
+.audio-call-number{margin-top:20px;font-size:14px;color:#6b7a72;}
+.audio-call-number a{color:var(--green);font-weight:700;text-decoration:none;}
+/* Hidden real audio element */
+#real-audio{display:none;}
+
+/* ── SECTIONS ── */
+.section{padding:90px 40px;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.section-label{font-size:11px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;}
+.section-title{font-size:40px;font-weight:800;color:#080f0a;letter-spacing:-1.2px;line-height:1.15;margin-bottom:12px;}
+.section-sub{font-size:16px;color:#6b7a72;line-height:1.75;max-width:560px;margin-bottom:44px;}
+.section.dark{background:#080f0a;}
+.section.dark .section-title{color:#ffffff;}
+.section.dark .section-sub{color:rgba(255,255,255,0.45);}
+.section.surface{background:#f4faf6;}
+
+/* ── WHO WE WORK WITH ── */
+.industries-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;}
+.industry-card{background:#ffffff;border:1px solid rgba(0,201,107,0.12);border-radius:14px;padding:18px;display:flex;align-items:flex-start;gap:12px;transition:all .25s;}
+.industry-card:hover{border-color:var(--green);transform:translateY(-2px);}
+.ind-icon{font-size:22px;flex-shrink:0;margin-top:2px;}
+.ind-name{font-size:14px;font-weight:700;color:#080f0a;margin-bottom:3px;}
+.ind-note{font-size:12px;color:#6b7a72;line-height:1.5;}
+.industry-catch{grid-column:1/-1;background:rgba(0,201,107,0.05);border:1px solid rgba(0,201,107,0.15);border-radius:12px;padding:16px 20px;font-size:14px;color:#6b7a72;text-align:center;line-height:1.6;}
+.industry-catch strong{color:#080f0a;}
+
+/* ── HOW IT WORKS ── */
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.how-step{background:rgba(255,255,255,0.04);border:1px solid rgba(0,201,107,0.12);border-radius:16px;padding:28px 24px;position:relative;}
+.how-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--green);letter-spacing:.1em;margin-bottom:16px;}
+.how-icon{font-size:28px;margin-bottom:14px;}
+.how-step h3{font-size:16px;font-weight:700;color:#ffffff;margin-bottom:8px;}
+.how-step p{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;}
+.how-connector{position:absolute;top:50%;right:-12px;width:24px;height:2px;background:rgba(0,201,107,0.25);z-index:1;}
+
+/* ── FEATURES ── */
+.feats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.feat-card{background:#ffffff;border:1px solid rgba(0,201,107,0.12);border-radius:16px;padding:28px;display:flex;gap:20px;align-items:flex-start;transition:all .25s;}
+.feat-card:hover{border-color:var(--green);transform:translateY(-2px);}
+.feat-icon-wrap{width:48px;height:48px;border-radius:12px;background:var(--green-light);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.feat-card h3{font-size:16px;font-weight:700;color:#080f0a;margin-bottom:6px;}
+.feat-card p{font-size:14px;color:#6b7a72;line-height:1.7;}
+
+/* ── PRICING ── */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+.price-card{background:#ffffff;border:1px solid rgba(0,201,107,0.15);border-radius:20px;padding:32px;}
+.price-card.featured{border:2px solid var(--green);}
+.price-tag{font-size:11px;font-weight:700;background:rgba(0,201,107,0.1);color:var(--green);padding:4px 12px;border-radius:100px;display:inline-block;margin-bottom:14px;letter-spacing:.06em;text-transform:uppercase;}
+.price-card h3{font-size:14px;font-weight:600;color:#6b7a72;margin-bottom:6px;}
+.price-amount{font-size:38px;font-weight:800;color:#080f0a;letter-spacing:-1.5px;line-height:1;margin-bottom:4px;}
+.price-amount span{font-size:16px;font-weight:400;color:#6b7a72;}
+.price-desc{font-size:13px;color:#6b7a72;padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid rgba(0,201,107,0.1);line-height:1.6;}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+.price-features li{font-size:13px;color:#080f0a;display:flex;gap:10px;align-items:flex-start;}
+.pck{color:var(--green);font-size:14px;flex-shrink:0;margin-top:1px;}
+.price-btn{width:100%;padding:13px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;border:none;font-family:'Outfit',sans-serif;transition:all .2s;}
+.price-btn.solid{background:var(--green);color:#080f0a;}
+.price-btn.solid:hover{background:#00e87a;}
+.price-btn.outline{background:transparent;border:1.5px solid rgba(0,201,107,0.25);color:#080f0a;}
+.price-btn.outline:hover{border-color:var(--green);}
+.trust-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.trust-card{background:#f4faf6;border:1px solid rgba(0,201,107,0.1);border-radius:12px;padding:16px 18px;}
+.trust-lbl{font-size:11px;color:#6b7a72;margin-bottom:5px;text-transform:uppercase;letter-spacing:.06em;}
+.trust-val{font-size:14px;font-weight:700;color:#080f0a;}
+
+/* ── CTA SECTION ── */
+.cta-section{background:#080f0a;padding:100px 40px;}
+.cta-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap;}
+.cta-left h2{font-size:40px;font-weight:800;color:#ffffff;letter-spacing:-1.2px;line-height:1.15;margin-bottom:12px;}
+.cta-left p{font-size:16px;color:rgba(255,255,255,0.4);max-width:420px;line-height:1.7;}
+.cta-btns{display:flex;gap:12px;flex-shrink:0;}
+
+/* ── FOOTER ── */
+footer{background:#050a07;padding:48px 40px 32px;border-top:1px solid rgba(0,201,107,0.1);}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;}
+.footer-logo{font-size:20px;font-weight:800;color:#ffffff;letter-spacing:-.5px;}
+.footer-logo span{color:var(--green);}
+.footer-links{display:flex;gap:24px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,0.3);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:rgba(255,255,255,0.6);}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.2);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;}
+  .phone-mockup{display:none;}
+  .how-grid{grid-template-columns:1fr 1fr;}
+  .industries-grid{grid-template-columns:1fr 1fr;}
+  .feats-grid{grid-template-columns:1fr;}
+  .pricing-grid{grid-template-columns:1fr;}
+  .trust-row{grid-template-columns:1fr 1fr;}
+  .cta-inner{flex-direction:column;text-align:center;}
+}
+@media(max-width:600px){
+  nav{padding:0 20px;}
+  .nav-links{display:none;}
+  .hero{padding:100px 24px 60px;}
+  .hero h1{font-size:36px;}
+  .how-grid{grid-template-columns:1fr;}
+  .hero-stats{grid-template-columns:1fr 1fr 1fr;}
+  .industries-grid{grid-template-columns:1fr 1fr;}
+  .trust-row{grid-template-columns:1fr 1fr;}
+}
+
+/* ── DARK MODE ── */
+[data-theme="dark"] body{background:#0a0f0c;color:#e8f5ec;}
+[data-theme="dark"] nav{background:rgba(10,15,12,0.97);border-bottom-color:rgba(0,201,107,0.12);}
+[data-theme="dark"] .nav-logo{color:#e8f5ec;}
+[data-theme="dark"] .nav-links a{color:#7a9e82;}
+[data-theme="dark"] .nav-links a:hover{color:#e8f5ec;}
+[data-theme="dark"] .audio-section{background:#111a14;}
+[data-theme="dark"] .audio-inner h2{color:#e8f5ec;}
+[data-theme="dark"] .audio-inner p{color:#7a9e82;}
+[data-theme="dark"] .audio-player{background:#0d1a10;border-color:rgba(0,201,107,0.2);}
+[data-theme="dark"] .audio-title{color:#e8f5ec;}
+[data-theme="dark"] .audio-desc{color:#7a9e82;}
+[data-theme="dark"] .audio-call-number{color:#7a9e82;}
+[data-theme="dark"] .section.surface{background:#111a14;}
+[data-theme="dark"] .section-title{color:#e8f5ec;}
+[data-theme="dark"] .section-sub{color:#7a9e82;}
+[data-theme="dark"] .industry-card{background:#111a14;border-color:rgba(0,201,107,0.12);}
+[data-theme="dark"] .ind-name{color:#e8f5ec;}
+[data-theme="dark"] .ind-note{color:#7a9e82;}
+[data-theme="dark"] .industry-catch{background:rgba(0,201,107,0.04);border-color:rgba(0,201,107,0.1);}
+[data-theme="dark"] .industry-catch strong{color:#e8f5ec;}
+[data-theme="dark"] .industry-catch{color:#7a9e82;}
+[data-theme="dark"] .feat-card{background:#111a14;border-color:rgba(0,201,107,0.12);}
+[data-theme="dark"] .feat-card h3{color:#e8f5ec;}
+[data-theme="dark"] .feat-card p{color:#7a9e82;}
+[data-theme="dark"] .feat-icon-wrap{background:rgba(0,201,107,0.1);}
+[data-theme="dark"] .price-card{background:#111a14;border-color:rgba(0,201,107,0.12);}
+[data-theme="dark"] .price-card.featured{border-color:var(--green);}
+[data-theme="dark"] .price-amount{color:#e8f5ec;}
+[data-theme="dark"] .price-card h3{color:#7a9e82;}
+[data-theme="dark"] .price-desc{color:#7a9e82;border-bottom-color:rgba(0,201,107,0.08);}
+[data-theme="dark"] .price-features li{color:#e8f5ec;}
+[data-theme="dark"] .price-btn.outline{color:#e8f5ec;border-color:rgba(0,201,107,0.2);}
+[data-theme="dark"] .trust-card{background:#0d1a10;border-color:rgba(0,201,107,0.1);}
+[data-theme="dark"] .trust-lbl{color:#7a9e82;}
+[data-theme="dark"] .trust-val{color:#e8f5ec;}
+[data-theme="dark"] footer{background:#050a07;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">mintt<span>.</span>ca</a>
+  <div class="nav-links">
+    <a href="index.html#how">How It Works</a>
+    <a href="index.html#features">Features</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="demo.html">Live Demo</a>
+    <a href="voice.html" class="active">Voice</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="nav-right">
+    <button id="theme-toggle" title="Toggle dark mode">🌙</button>
+    <a href="login.html" id="nav-login" class="nav-cta-secondary">Log In</a>
+    <a href="signup.html" class="nav-cta">Get Started →</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-live-badge"><span class="live-dot"></span>Live now · Ontario, Canada</div>
+      <h1>Your phone line.<br><em>Working while<br>you work.</em></h1>
+      <p class="hero-sub">You can't answer every call when you're on a job. Mintt picks up, handles the conversation, scores the lead, and has the details waiting when you're free. No voicemail. No missed jobs.</p>
+      <div class="hero-btns">
+        <a href="signup.html?plan=growth" class="btn-primary">Start free trial →</a>
+        <button class="btn-ghost" onclick="playDemo()">▶ Hear a sample call</button>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-num">24/7</div><div class="hero-stat-lbl">Always picks up</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">&lt;2s</div><div class="hero-stat-lbl">Answer time</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">0</div><div class="hero-stat-lbl">Missed calls</div></div>
+      </div>
+    </div>
+
+    <!-- Phone conversation mockup -->
+    <div class="phone-mockup">
+      <div class="phone-top">
+        <div class="phone-avatar">M</div>
+        <div>
+          <div class="phone-name">Mintt Voice Agent</div>
+          <div class="phone-status">● Active call · 0:47</div>
+        </div>
+      </div>
+      <div class="phone-label">Caller</div>
+      <div class="phone-msg caller">"Hi, I've got a panel that's been sparking. It's a rental unit and the tenant is worried — can someone come today?"</div>
+      <div class="phone-label right">Mintt</div>
+      <div class="phone-msg mintt">"Absolutely — we treat sparking panels as an emergency. Can I get your name and the address? I'll flag this as urgent for the owner."</div>
+      <div class="phone-label">Caller</div>
+      <div class="phone-msg caller">"Sure, it's 247 Maple Ave in Hamilton. Name's Dan."</div>
+      <div class="phone-score">
+        <span class="score-dot"></span>
+        <span class="score-text">🔴 HOT lead detected — emergency job · Alerting owner now</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── AUDIO DEMO ── -->
+<section class="audio-section">
+  <div class="audio-inner">
+    <div class="audio-label">Sample call</div>
+    <h2>Hear Mintt in action.</h2>
+    <p>This is a real example of how Mintt handles an inbound call — naturally, professionally, and without missing a detail.</p>
+    <div class="audio-player">
+      <button class="play-btn" onclick="playDemo()" id="play-btn" title="Play sample call">▶</button>
+      <div class="audio-info">
+        <div class="audio-title">Emergency panel call — residential</div>
+        <div class="audio-desc">Mintt Voice · Hamilton, ON · 1:24</div>
+      </div>
+      <div class="audio-wave" id="audio-wave">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+    <!-- SWAP THIS: replace the src with your Bland.ai recording URL when ready -->
+    <audio id="real-audio" src="demo-call.mp3" preload="none"></audio>
+    <p class="audio-call-number">Rather call and hear it live? Call your Mintt line: <a href="tel:6475598674">647-559-8674</a></p>
+  </div>
+</section>
+
+<!-- ── WHO WE WORK WITH ── -->
+<section class="section surface">
+  <div class="section-inner">
+    <div class="section-label">Who we work with</div>
+    <div class="section-title">Built for the trades.<br>Ready for anyone who's busy.</div>
+    <p class="section-sub">Mintt started with trade businesses and that's still our core. But if your phone rings and you can't always answer it, Mintt works for you.</p>
+    <div class="industries-grid">
+      <div class="industry-card"><span class="ind-icon">⚡</span><div><div class="ind-name">Electricians</div><div class="ind-note">Residential & commercial, emergency calls</div></div></div>
+      <div class="industry-card"><span class="ind-icon">🔧</span><div><div class="ind-name">Plumbers</div><div class="ind-note">Service calls, emergency response</div></div></div>
+      <div class="industry-card"><span class="ind-icon">❄️</span><div><div class="ind-name">HVAC</div><div class="ind-note">Seasonal peaks & emergency callouts</div></div></div>
+      <div class="industry-card"><span class="ind-icon">🏗️</span><div><div class="ind-name">Contractors</div><div class="ind-note">General & specialty trade work</div></div></div>
+      <div class="industry-card"><span class="ind-icon">📦</span><div><div class="ind-name">Electrical distributors</div><div class="ind-note">Counter sales & trade inquiries</div></div></div>
+      <div class="industry-card"><span class="ind-icon">🚗</span><div><div class="ind-name">Auto & fleet</div><div class="ind-note">Service booking & repair shops</div></div></div>
+      <div class="industry-card"><span class="ind-icon">🏠</span><div><div class="ind-name">Property managers</div><div class="ind-note">Maintenance requests & tenant calls</div></div></div>
+      <div class="industry-card"><span class="ind-icon">🔩</span><div><div class="ind-name">Suppliers & wholesalers</div><div class="ind-note">B2B inbound & order inquiries</div></div></div>
+      <div class="industry-catch"><strong>If your phone rings and you can't always pick up — Mintt handles it.</strong> We'll set it up around your business, not a template.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section class="section dark">
+  <div class="section-inner">
+    <div class="section-label">How it works</div>
+    <div class="section-title" style="color:#fff;">Four steps.<br>Zero missed leads.</div>
+    <p class="section-sub">From the moment your phone rings to the moment you see the summary — Mintt runs the whole thing.</p>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-num">STEP 01</div>
+        <div class="how-icon">📲</div>
+        <h3>Customer calls your number</h3>
+        <p>Your dedicated Mintt line picks up — or forwards from your existing number. No hardware, no setup headaches.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">STEP 02</div>
+        <div class="how-icon">🎙️</div>
+        <h3>Mintt answers, in your name</h3>
+        <p>Greets them as your business. Asks the right questions. Handles the full conversation — no scripts, no menus.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">STEP 03</div>
+        <div class="how-icon">🔴</div>
+        <h3>Lead gets scored instantly</h3>
+        <p>Emergency? Big job? Price-shopper? Mintt reads the call and flags what matters before you ever call back.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">STEP 04</div>
+        <div class="how-icon">📧</div>
+        <h3>You get the full picture</h3>
+        <p>Call summary, contact info, and lead score in your inbox before you've put your tools down.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURES ── -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-label">What's included</div>
+    <div class="section-title">Not a receptionist.<br>Better.</div>
+    <p class="section-sub">Mintt doesn't read from a script. It handles real conversations the way your best employee would — then gets out of the way.</p>
+    <div class="feats-grid">
+      <div class="feat-card">
+        <div class="feat-icon-wrap">🎙️</div>
+        <div>
+          <h3>Real conversations, not scripts</h3>
+          <p>Mintt asks follow-up questions, understands context, and handles curveballs — no awkward phone menus or robotic responses.</p>
+        </div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon-wrap">🌙</div>
+        <div>
+          <h3>After-hours coverage, every night</h3>
+          <p>2am emergency or Sunday afternoon inquiry — Mintt picks up and captures it the same way, every time, without overtime.</p>
+        </div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon-wrap">📋</div>
+        <div>
+          <h3>Every call logged and searchable</h3>
+          <p>Full transcript, call summary, and lead score saved to your Mintt dashboard. Nothing falls through the cracks.</p>
+        </div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon-wrap">🔗</div>
+        <div>
+          <h3>Paired with your chat agent</h3>
+          <p>Phone and chat leads in one place. One dashboard. Every opportunity — however they reached you — in a single view.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRICING ── -->
+<section class="section surface">
+  <div class="section-inner">
+    <div class="section-label">Pricing</div>
+    <div class="section-title">Pick the option that fits.</div>
+    <p class="section-sub">Voice is included in Growth. Or bolt it onto your Starter plan — no need to upgrade until you're ready.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>Voice add-on</h3>
+        <div class="price-amount">+$150<span>/mo</span></div>
+        <div class="price-desc">Add to your Starter plan. Get your dedicated line and voice agent without upgrading your full subscription.</div>
+        <ul class="price-features">
+          <li><span class="pck">✓</span>Dedicated Mintt phone number</li>
+          <li><span class="pck">✓</span>Up to 100 calls/day</li>
+          <li><span class="pck">✓</span>Full call transcripts</li>
+          <li><span class="pck">✓</span>HOT lead detection</li>
+          <li><span class="pck">✓</span>Instant email alert per call</li>
+        </ul>
+        <button class="price-btn outline" onclick="window.location.href='signup.html?plan=starter'">Add to Starter plan</button>
+      </div>
+      <div class="price-card featured">
+        <div class="price-tag">Best value</div>
+        <h3>Growth</h3>
+        <div class="price-amount">$247<span>/mo</span></div>
+        <div class="price-desc">Voice + chat agent + full lead intelligence. The complete Mintt setup for one growing business.</div>
+        <ul class="price-features">
+          <li><span class="pck">✓</span>Everything in Voice add-on</li>
+          <li><span class="pck">✓</span>AI chat agent, 24/7</li>
+          <li><span class="pck">✓</span>Image & photo analysis</li>
+          <li><span class="pck">✓</span>Up to 3 locations</li>
+          <li><span class="pck">✓</span>Full analytics dashboard</li>
+          <li><span class="pck">✓</span>14-day free trial</li>
+        </ul>
+        <button class="price-btn solid" onclick="window.location.href='signup.html?plan=growth'">Start free trial →</button>
+      </div>
+      <div class="price-card">
+        <div class="price-tag" style="background:rgba(0,0,0,0.05);color:#6b7a72;">Custom</div>
+        <h3>Enterprise</h3>
+        <div class="price-amount" style="font-size:26px;letter-spacing:-.5px;">Let's talk</div>
+        <div class="price-desc">High call volume, multiple locations, or specific integrations — we'll build Mintt Voice around your operation.</div>
+        <ul class="price-features">
+          <li><span class="pck">✓</span>Custom call volumes</li>
+          <li><span class="pck">✓</span>Dedicated account manager</li>
+          <li><span class="pck">✓</span>CRM & software integrations</li>
+          <li><span class="pck">✓</span>White label available</li>
+          <li><span class="pck">✓</span>SLA & uptime guarantee</li>
+        </ul>
+        <button class="price-btn outline" onclick="window.location.href='contact.html'">Contact us →</button>
+      </div>
+    </div>
+    <div class="trust-row">
+      <div class="trust-card"><div class="trust-lbl">Setup time</div><div class="trust-val">Under 1 hour</div></div>
+      <div class="trust-card"><div class="trust-lbl">Contracts</div><div class="trust-val">None — cancel anytime</div></div>
+      <div class="trust-card"><div class="trust-lbl">Data storage</div><div class="trust-val">Canadian servers only</div></div>
+      <div class="trust-card"><div class="trust-lbl">Compliance</div><div class="trust-val">PIPEDA compliant</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <h2>Stop sending calls<br>to voicemail.</h2>
+      <p>Every missed call is a job someone else is going to close. Mintt makes sure that stops today.</p>
+    </div>
+    <div class="cta-btns">
+      <a href="signup.html?plan=growth" class="btn-primary">Start free trial →</a>
+      <a href="contact.html" class="btn-ghost">Book a setup call</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">mintt<span>.</span>ca</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="voice.html">Voice</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </div>
+    <div class="footer-copy">© 2026 Mintt — Ontario, Canada</div>
+  </div>
+</footer>
+
+<script src="mintt-shared.js"></script>
+<script>
+var isPlaying = false;
+var audio = document.getElementById('real-audio');
+var playBtn = document.getElementById('play-btn');
+var wave = document.getElementById('audio-wave');
+
+function playDemo() {
+  if (!audio.src || audio.src.endsWith('demo-call.mp3')) {
+    // No recording yet — show placeholder message and link to live number
+    var info = document.querySelector('.audio-info');
+    info.innerHTML = '<div class="audio-title">Recording coming soon!</div><div class="audio-desc">Call us live at <a href="tel:6475598674" style="color:var(--green);font-weight:700;">647-559-8674</a> to hear Mintt in action.</div>';
+    return;
+  }
+  if (isPlaying) {
+    audio.pause();
+    playBtn.textContent = '▶';
+    wave.classList.add('paused');
+    isPlaying = false;
+  } else {
+    audio.play();
+    playBtn.textContent = '⏸';
+    wave.classList.remove('paused');
+    isPlaying = true;
+  }
+}
+
+if (audio) {
+  audio.addEventListener('ended', function() {
+    playBtn.textContent = '▶';
+    wave.classList.add('paused');
+    isPlaying = false;
+  });
+}
+</script>
+</body>
+</html>

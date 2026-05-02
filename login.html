@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log In — Mintt.ca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root,[data-theme="light"]{
+  --green:#00c96b;--green-dark:#00a356;--green-light:#e6fff3;
+  --black:#080f0a;--off-black:#0d1a12;--white:#ffffff;--grey:#6b7a72;
+  --light:#f4faf6;--border:rgba(0,201,107,0.15);
+  --bg:#ffffff;--surface:#f4faf6;--text:#080f0a;--text-muted:#6b7a72;
+  --nav-bg:rgba(255,255,255,0.92);--card-bg:#ffffff;
+  --input-bg:#fafafa;--input-border:#e5e7eb;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between;background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-logo{font-size:22px;font-weight:800;letter-spacing:-0.5px;color:var(--text);text-decoration:none;}
+.nav-logo span{color:var(--green);}
+#theme-toggle{background:transparent;border:1.5px solid var(--border);border-radius:50%;width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.page-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:100px 24px 60px;background:var(--bg);}
+.auth-card{background:var(--card-bg);border:1px solid var(--border);border-radius:24px;padding:48px;max-width:440px;width:100%;}
+.logo-mark{width:48px;height:48px;background:var(--green);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px;}
+.auth-card h2{font-size:26px;font-weight:800;color:var(--text);letter-spacing:-0.5px;margin-bottom:6px;}
+.auth-card .sub{font-size:14px;color:var(--text-muted);margin-bottom:28px;}
+label{display:block;font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;margin-top:16px;}
+input{width:100%;padding:12px 16px;border:1.5px solid var(--input-border);border-radius:10px;font-family:'Outfit',sans-serif;font-size:14px;color:var(--text);background:var(--input-bg);outline:none;transition:all .2s;}
+input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,201,107,0.1);}
+.pw-wrap{position:relative;}
+.pw-wrap input{padding-right:46px;}
+.pw-toggle{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:16px;color:var(--grey);}
+.forgot{text-align:right;margin-top:6px;}
+.forgot a{font-size:12px;color:var(--green);text-decoration:none;font-weight:600;}
+.btn{width:100%;padding:15px;background:var(--green);color:var(--black);border:none;border-radius:10px;font-family:'Outfit',sans-serif;font-size:16px;font-weight:700;cursor:pointer;margin-top:20px;transition:all .2s;}
+.btn:hover{background:#00e87a;transform:translateY(-1px);}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+.divider{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.divider-line{flex:1;border:none;border-top:1px solid var(--border);}
+.divider-text{font-size:12px;color:var(--text-muted);white-space:nowrap;background:var(--card-bg);padding:0 4px;}
+.error-box{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:10px;padding:12px 14px;font-size:13px;color:#ef4444;display:none;margin-top:16px;}
+.signup-link{text-align:center;margin-top:20px;font-size:13px;color:var(--text-muted);}
+.signup-link a{color:var(--green);font-weight:600;text-decoration:none;}
+footer{background:var(--off-black,#0d1a12);padding:24px 40px;text-align:center;}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.25);}
+
+/* ══════════════════════════════════════
+   DARK MODE — COMPLETE OVERRIDE SYSTEM
+   Never remaps --black/--white/--light
+   Uses explicit selectors instead
+   ══════════════════════════════════════ */
+[data-theme="dark"] {
+  --bg: #0a0f0c;
+  --surface: #111a14;
+  --text: #e8f5ec;
+  --text-muted: #7a9e82;
+  --nav-bg: rgba(10,15,12,0.97);
+  --card-bg: #111a14;
+  --input-bg: #0d1a10;
+  --input-border: rgba(0,201,107,0.25);
+  --border: rgba(0,201,107,0.15);
+}
+
+/* Base */
+[data-theme="dark"] body { background: #0a0f0c; color: #e8f5ec; }
+
+/* Nav */
+[data-theme="dark"] nav { background: rgba(10,15,12,0.97); border-bottom-color: rgba(0,201,107,0.12); }
+[data-theme="dark"] .nav-logo { color: #e8f5ec; }
+[data-theme="dark"] .nav-links a { color: #7a9e82; }
+[data-theme="dark"] .nav-links a:hover { color: var(--green); }
+
+/* Typography — all light-bg sections */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4 { color: #e8f5ec; }
+[data-theme="dark"] p { color: #7a9e82; }
+[data-theme="dark"] .section-title { color: #e8f5ec !important; }
+[data-theme="dark"] .section-sub { color: #7a9e82 !important; }
+[data-theme="dark"] .section-label { color: var(--green) !important; }
+
+/* Hero — keep dark even in dark mode */
+[data-theme="dark"] .hero { background: #050a07; }
+[data-theme="dark"] h1 .line2 { color: rgba(255,255,255,0.45) !important; }
+[data-theme="dark"] .hero-sub { color: rgba(255,255,255,0.55) !important; }
+[data-theme="dark"] .hero-stat .num { color: #e8f5ec; }
+[data-theme="dark"] .hero-stat .lbl { color: rgba(255,255,255,0.35); }
+[data-theme="dark"] .btn-ghost { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.2); }
+
+/* Social proof bar */
+[data-theme="dark"] .social-proof-bar { background: rgba(0,201,107,0.04) !important; border-bottom-color: rgba(0,201,107,0.1) !important; }
+
+/* Chat preview section */
+[data-theme="dark"] .chat-preview { background: #111a14; }
+[data-theme="dark"] .chat-window { background: #0a0f0c; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .chat-bubble.agent { background: #111a14; color: #e8f5ec; }
+[data-theme="dark"] .chat-powered { color: #7a9e82; border-top-color: rgba(0,201,107,0.1); }
+
+/* Problem section */
+[data-theme="dark"] .problem { background: #0a0f0c; }
+[data-theme="dark"] .problem-item { background: #111a14; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .problem-item h4 { color: #e8f5ec; }
+[data-theme="dark"] .problem-item p { color: #7a9e82; }
+[data-theme="dark"] .stat-card-sm { background: #111a14; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .stat-card-sm .sm-desc { color: #7a9e82; }
+
+/* Features section */
+[data-theme="dark"] .features { background: #0a0f0c; }
+[data-theme="dark"] .feature { background: #111a14; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .feature h3 { color: #e8f5ec; }
+[data-theme="dark"] .feature p { color: #7a9e82; }
+[data-theme="dark"] .feature-icon { background: rgba(0,201,107,0.12); }
+
+/* Social proof / testimonials */
+[data-theme="dark"] .proof { background: #111a14; }
+[data-theme="dark"] .testimonial { background: #0a0f0c; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .tquote { color: #e8f5ec; }
+[data-theme="dark"] .tname { color: #e8f5ec; }
+[data-theme="dark"] .trole { color: #7a9e82; }
+
+/* FAQ */
+[data-theme="dark"] .faq-item { background: #111a14; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .faq-q { color: #e8f5ec; }
+[data-theme="dark"] .faq-a { color: #7a9e82; }
+[data-theme="dark"] .faq-icon { color: var(--green); }
+
+/* Comparison table */
+[data-theme="dark"] .compare { background: #0a0f0c; }
+[data-theme="dark"] .compare h2 { color: #e8f5ec; }
+[data-theme="dark"] .compare > .compare-inner > p { color: #7a9e82; }
+[data-theme="dark"] .compare-table th { background: #111a14; color: #7a9e82; border-bottom-color: rgba(0,201,107,0.2); }
+[data-theme="dark"] .compare-table td { color: #e8f5ec; border-bottom-color: rgba(0,201,107,0.08); }
+[data-theme="dark"] .compare-table .row-group td { background: #0d1a10; color: #7a9e82; }
+[data-theme="dark"] .compare-table tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+[data-theme="dark"] .cmp-row:nth-child(even) { background: rgba(255,255,255,0.02); }
+[data-theme="dark"] .cmp-feat { color: #e8f5ec; }
+
+/* Pricing plans */
+[data-theme="dark"] .plans { background: #111a14; }
+[data-theme="dark"] .plan { background: #0a0f0c; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .plan .plan-name { color: #7a9e82; }
+[data-theme="dark"] .plan .price-amount { color: #e8f5ec; }
+[data-theme="dark"] .plan .price-period { color: #7a9e82; }
+[data-theme="dark"] .plan .plan-desc { color: #7a9e82; border-bottom-color: rgba(0,201,107,0.1); }
+[data-theme="dark"] .plan .plan-features li { color: #e8f5ec; }
+[data-theme="dark"] .plan .plan-features li.disabled { color: #7a9e82; opacity: 0.5; }
+[data-theme="dark"] .plan-cta.outline { color: #e8f5ec; border-color: rgba(0,201,107,0.25); }
+[data-theme="dark"] .plan-cta.outline:hover { color: var(--green); border-color: var(--green); }
+[data-theme="dark"] .toggle-wrap { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); }
+[data-theme="dark"] .toggle-btn { color: rgba(255,255,255,0.5); }
+
+/* Contact page */
+[data-theme="dark"] .contact-page { background: #050a07; }
+[data-theme="dark"] .contact-form-wrap { background: #111a14; }
+[data-theme="dark"] .contact-form-wrap h2 { color: #e8f5ec; }
+[data-theme="dark"] .contact-form-wrap > p { color: #7a9e82; }
+[data-theme="dark"] .form-group label { color: #7a9e82; }
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group select,
+[data-theme="dark"] .form-group textarea { background: #0d1a10; border-color: rgba(0,201,107,0.2); color: #e8f5ec; }
+[data-theme="dark"] .form-group input::placeholder,
+[data-theme="dark"] .form-group textarea::placeholder { color: #7a9e82; }
+[data-theme="dark"] .what-to-expect h4 { color: #e8f5ec; }
+
+/* ROI calculator */
+[data-theme="dark"] section[style*="background:var(--light)"],
+[data-theme="dark"] .roi-section { background: #111a14 !important; }
+
+/* Footer */
+[data-theme="dark"] footer { background: #050a07 !important; }
+
+/* Auth pages */
+[data-theme="dark"] .auth-card { background: #111a14; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .auth-card h2 { color: #e8f5ec; }
+[data-theme="dark"] .auth-card .sub { color: #7a9e82; }
+[data-theme="dark"] .plan-pill { border-color: rgba(0,201,107,0.2); }
+[data-theme="dark"] .plan-pill .pname { color: #e8f5ec; }
+[data-theme="dark"] .plan-pill.selected { background: rgba(0,201,107,0.1); }
+[data-theme="dark"] label { color: #7a9e82; }
+[data-theme="dark"] input,
+[data-theme="dark"] select { background: #0d1a10; border-color: rgba(0,201,107,0.2); color: #e8f5ec; }
+[data-theme="dark"] input::placeholder { color: #7a9e82; }
+[data-theme="dark"] .divider-text { color: #7a9e82; background: #111a14; }
+[data-theme="dark"] .divider-line { border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .login-link { color: #7a9e82; }
+[data-theme="dark"] .notice { background: rgba(0,201,107,0.08); border-color: rgba(0,201,107,0.2); }
+
+/* Inline dark sections stay dark */
+[data-theme="dark"] .how,
+[data-theme="dark"] .cta-section { background: #050a07; }
+
+/* Generic inline style overrides for light backgrounds */
+[data-theme="dark"] section[style*="background:var(--white)"] { background: #0a0f0c !important; }
+[data-theme="dark"] section[style*="background:var(--light)"] { background: #111a14 !important; }
+[data-theme="dark"] div[style*="background:var(--white)"] { background: #111a14 !important; }
+[data-theme="dark"] div[style*="background:#f"] { background: #111a14 !important; }
+[data-theme="dark"] div[style*="background:white"] { background: #111a14 !important; }
+
+
+[data-theme="dark"] body { background: #0a0f0c !important; color: #e8f5ec !important; }
+[data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3, [data-theme="dark"] h4 { color: #e8f5ec !important; }
+[data-theme="dark"] p { color: #7a9e82 !important; }
+[data-theme="dark"] footer { background: #050a07 !important; }
+[data-theme="dark"] nav { background: rgba(10,15,12,0.97) !important; }
+[data-theme="dark"] .nav-logo { color: #e8f5ec !important; }
+[data-theme="dark"] section[style*="background:var(--light)"] { background: #111a14 !important; }
+[data-theme="dark"] section[style*="background:var(--white)"] { background: #0a0f0c !important; }
+[data-theme="dark"] div[style*="background:white"] { background: #111a14 !important; }
+
+[data-theme="dark"] .auth-card { background: #111a14 !important; border-color: rgba(0,201,107,0.15) !important; }
+[data-theme="dark"] .auth-card h2 { color: #e8f5ec !important; }
+[data-theme="dark"] .auth-card .sub { color: #7a9e82 !important; }
+[data-theme="dark"] label { color: #7a9e82 !important; }
+[data-theme="dark"] input { background: #0d1a10 !important; border-color: rgba(0,201,107,0.2) !important; color: #e8f5ec !important; }
+[data-theme="dark"] input::placeholder { color: #7a9e82 !important; }
+[data-theme="dark"] .divider-text { color: #7a9e82 !important; background: #111a14 !important; }
+[data-theme="dark"] .divider-line { border-color: rgba(0,201,107,0.15) !important; }
+[data-theme="dark"] #reset-panel { background: #0d1a10 !important; }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">mintt<span>.</span>ca</a>
+  <button id="theme-toggle">🌙</button>
+</nav>
+
+<div class="page-wrap">
+  <div class="auth-card">
+    <div class="logo-mark">🌿</div>
+    <h2>Welcome back</h2>
+    <p class="sub">Log in to your Mintt dashboard.</p>
+
+    <div id="error-box" class="error-box">Incorrect email or password. Please try again.</div>
+
+    <label>Email address</label>
+    <input type="email" id="login-email" placeholder="john@yourbusiness.com" autocomplete="email" required>
+
+    <label>Password</label>
+    <div class="pw-wrap">
+      <input type="password" id="login-pw" placeholder="Your password" autocomplete="current-password" required onkeydown="if(event.key==='Enter')doLogin()">
+      <button class="pw-toggle" onclick="togglePw()" type="button">👁️</button>
+    </div>
+    <div class="forgot"><a href="#" onclick="showReset()">Forgot password?</a></div>
+
+    <button class="btn" id="login-btn" onclick="doLogin()">Log In →</button>
+
+    <div class="divider">
+      <hr class="divider-line">
+      <span class="divider-text">New to Mintt?</span>
+      <hr class="divider-line">
+    </div>
+
+    <a href="signup.html" style="display:block;text-align:center;padding:13px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-weight:600;color:var(--text);text-decoration:none;transition:all .2s;" onmouseover="this.style.borderColor='var(--green)';this.style.color='var(--green)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text)'">Start Free Trial →</a>
+
+    <!-- Password Reset (hidden) -->
+    <div id="reset-panel" style="display:none;margin-top:20px;background:var(--surface);border-radius:12px;padding:20px;">
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Enter your email and we'll send a reset link to <strong>office@mintt.ca</strong>.</p>
+      <input type="email" id="reset-email" placeholder="your@email.com">
+      <button class="btn" style="margin-top:12px;font-size:14px;padding:12px;" onclick="sendReset()">Send Reset Link</button>
+      <button onclick="document.getElementById('reset-panel').style.display='none'" style="display:block;width:100%;margin-top:8px;background:none;border:none;font-size:13px;color:var(--text-muted);cursor:pointer;font-family:'Outfit',sans-serif;">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p class="footer-copy">© 2026 Mintt — Ontario, Canada. All rights reserved.</p>
+</footer>
+
+<script src="mintt-shared.js"></script>
+<script>
+function togglePw() {
+  var inp = document.getElementById('login-pw');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+}
+
+function doLogin() {
+  var email = document.getElementById('login-email').value.trim();
+  var pw = document.getElementById('login-pw').value;
+  var btn = document.getElementById('login-btn');
+  var err = document.getElementById('error-box');
+  if (!email || !pw) { err.style.display='block'; err.textContent='Please enter your email and password.'; return; }
+  btn.textContent = 'Logging in...';
+  btn.disabled = true;
+  err.style.display = 'none';
+
+  // Check localStorage for demo signup (development flow)
+  // In production, this hits your Node.js /api/login endpoint
+  setTimeout(function() {
+    var stored = null;
+    try { stored = JSON.parse(localStorage.getItem('mintt-user')); } catch(e){}
+    if (stored && stored.email === email) {
+      // Redirect to dashboard
+      window.location.href = 'http://localhost:3000/dashboard.html';
+    } else {
+      // Simulate auth check against backend
+      fetch('/api/login', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ email: email, password: pw })
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        if (d && d.success) {
+          localStorage.setItem('mintt-user', JSON.stringify({ name: d.name, email: email, plan: d.plan }));
+          window.location.href = d.dashboardUrl || '/dashboard.html';
+        } else {
+          throw new Error('Invalid credentials');
+        }
+      })
+      .catch(function() {
+        btn.textContent = 'Log In →';
+        btn.disabled = false;
+        err.style.display = 'block';
+        err.textContent = 'Incorrect email or password. Please try again.';
+      });
+    }
+  }, 800);
+}
+
+function showReset() {
+  document.getElementById('reset-panel').style.display = 'block';
+  document.getElementById('reset-email').value = document.getElementById('login-email').value;
+}
+
+function sendReset() {
+  var email = document.getElementById('reset-email').value.trim();
+  if (!email) return;
+  // In production, hits /api/reset-password
+  alert('If an account exists for ' + email + ', a reset link has been sent to office@mintt.ca. Check your inbox.');
+  document.getElementById('reset-panel').style.display = 'none';
+}
+</script>
+</body>
+</html>

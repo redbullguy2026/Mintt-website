@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — Mintt.ca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--green:#00c96b;--black:#080f0a;--white:#ffffff;--grey:#6b7a72;--light:#f4faf6;--border:rgba(0,201,107,0.15);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Outfit',sans-serif;background:#ffffff;color:#080f0a;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-logo{font-size:22px;font-weight:800;color:var(--black);text-decoration:none;}
+.nav-logo span{color:var(--green);}
+.nav-links{display:flex;gap:32px;}
+.nav-links a{font-size:14px;font-weight:500;color:var(--grey);text-decoration:none;}
+.nav-cta{background:var(--green);color:var(--black);padding:10px 22px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;}
+.legal-page{max-width:820px;margin:0 auto;padding:120px 40px 80px;}
+.legal-header{margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--border);}
+.legal-tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--green);margin-bottom:12px;}
+h1{font-size:42px;font-weight:900;letter-spacing:-1.5px;color:var(--black);margin-bottom:12px;}
+.legal-meta{font-size:14px;color:var(--grey);}
+.legal-content h2{font-size:20px;font-weight:700;color:var(--black);margin:36px 0 12px;letter-spacing:-0.3px;}
+.legal-content h3{font-size:16px;font-weight:600;color:var(--black);margin:24px 0 8px;}
+.legal-content p{font-size:15px;color:#374151;line-height:1.8;margin-bottom:14px;}
+.legal-content ul{margin:0 0 14px 20px;}
+.legal-content li{font-size:15px;color:#374151;line-height:1.8;margin-bottom:6px;}
+.legal-content a{color:var(--green);text-decoration:none;}
+.legal-box{background:var(--light);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:20px;}
+.legal-box p{margin-bottom:0;}
+footer{background:#080f0a;padding:40px;border-top:1px solid rgba(0,201,107,0.1);text-align:center;}
+.footer-logo{font-size:18px;font-weight:800;color:#fff;margin-bottom:12px;}
+.footer-logo span{color:var(--green);}
+.footer-links{display:flex;gap:24px;justify-content:center;margin-bottom:16px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none;}
+.footer-links a:hover{color:var(--green);}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.2);}
+@media(max-width:768px){nav{padding:0 20px;}.nav-links{display:none;}.legal-page{padding:100px 24px 60px;}}
+
+/* ── DARK MODE VARS ── */
+:root,[data-theme="light"]{
+  --green:#00c96b;--green-dark:#00a356;--green-light:#e6fff3;--green-mid:#00e87a;
+  --black:#080f0a;--off-black:#0d1a12;--white:#ffffff;--grey:#6b7a72;
+  --light:#f4faf6;--border:rgba(0,201,107,0.15);
+  --bg:#ffffff;--surface:#f4faf6;--text:#080f0a;--text-muted:#6b7a72;
+  --nav-bg:rgba(255,255,255,0.92);--nav-border:rgba(0,201,107,0.15);
+  --card-bg:#ffffff;--card-border:rgba(0,201,107,0.15);
+  --input-bg:#fafafa;--input-border:#e5e7eb;
+}
+
+/* Theme toggle button */
+#theme-toggle{
+  background:transparent;border:1.5px solid var(--border);
+  border-radius:50%;width:36px;height:36px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;transition:all .2s;flex-shrink:0;
+}
+#theme-toggle:hover{border-color:var(--green);background:var(--green-light);}
+
+
+/* ══════════════════════════════════════
+   DARK MODE — COMPLETE OVERRIDE SYSTEM
+   Never remaps --black/--white/--light
+   Uses explicit selectors instead
+   ══════════════════════════════════════ */
+[data-theme="dark"] {
+  --bg: #0a0f0c;
+  --surface: #111a14;
+  --text: #e8f5ec;
+  --text-muted: #7a9e82;
+  --nav-bg: rgba(10,15,12,0.97);
+  --card-bg: #111a14;
+  --input-bg: #0d1a10;
+  --input-border: rgba(0,201,107,0.25);
+  --border: rgba(0,201,107,0.15);
+}
+
+/* Base */
+[data-theme="dark"] body { background: #0a0f0c; color: #e8f5ec; }
+
+/* Nav */
+[data-theme="dark"] nav { background: rgba(10,15,12,0.97); border-bottom-color: rgba(0,201,107,0.12); }
+[data-theme="dark"] .nav-logo { color: #e8f5ec; }
+[data-theme="dark"] .nav-links a { color: #7a9e82; }
+[data-theme="dark"] .nav-links a:hover { color: var(--green); }
+
+/* Typography — all light-bg sections */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4 { color: #e8f5ec; }
+[data-theme="dark"] p { color: #7a9e82; }
+[data-theme="dark"] .section-title { color: #e8f5ec !important; }
+[data-theme="dark"] .section-sub { color: #7a9e82 !important; }
+[data-theme="dark"] .section-label { color: var(--green) !important; }
+
+/* Hero — keep dark even in dark mode */
+[data-theme="dark"] .hero { background: #050a07; }
+[data-theme="dark"] h1 .line2 { color: rgba(255,255,255,0.45) !important; }
+[data-theme="dark"] .hero-sub { color: rgba(255,255,255,0.55) !important; }
+[data-theme="dark"] .hero-stat .num { color: #e8f5ec; }
+[data-theme="dark"] .hero-stat .lbl { color: rgba(255,255,255,0.35); }
+[data-theme="dark"] .btn-ghost { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.2); }
+
+/* Social proof bar */
+[data-theme="dark"] .social-proof-bar { background: rgba(0,201,107,0.04) !important; border-bottom-color: rgba(0,201,107,0.1) !important; }
+
+/* Chat preview section */
+[data-theme="dark"] .chat-preview { background: #111a14; }
+[data-theme="dark"] .chat-window { background: #0a0f0c; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .chat-bubble.agent { background: #111a14; color: #e8f5ec; }
+[data-theme="dark"] .chat-powered { color: #7a9e82; border-top-color: rgba(0,201,107,0.1); }
+
+/* Problem section */
+[data-theme="dark"] .problem { background: #0a0f0c; }
+[data-theme="dark"] .problem-item { background: #111a14; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .problem-item h4 { color: #e8f5ec; }
+[data-theme="dark"] .problem-item p { color: #7a9e82; }
+[data-theme="dark"] .stat-card-sm { background: #111a14; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .stat-card-sm .sm-desc { color: #7a9e82; }
+
+/* Features section */
+[data-theme="dark"] .features { background: #0a0f0c; }
+[data-theme="dark"] .feature { background: #111a14; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .feature h3 { color: #e8f5ec; }
+[data-theme="dark"] .feature p { color: #7a9e82; }
+[data-theme="dark"] .feature-icon { background: rgba(0,201,107,0.12); }
+
+/* Social proof / testimonials */
+[data-theme="dark"] .proof { background: #111a14; }
+[data-theme="dark"] .testimonial { background: #0a0f0c; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .tquote { color: #e8f5ec; }
+[data-theme="dark"] .tname { color: #e8f5ec; }
+[data-theme="dark"] .trole { color: #7a9e82; }
+
+/* FAQ */
+[data-theme="dark"] .faq-item { background: #111a14; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .faq-q { color: #e8f5ec; }
+[data-theme="dark"] .faq-a { color: #7a9e82; }
+[data-theme="dark"] .faq-icon { color: var(--green); }
+
+/* Comparison table */
+[data-theme="dark"] .compare { background: #0a0f0c; }
+[data-theme="dark"] .compare h2 { color: #e8f5ec; }
+[data-theme="dark"] .compare > .compare-inner > p { color: #7a9e82; }
+[data-theme="dark"] .compare-table th { background: #111a14; color: #7a9e82; border-bottom-color: rgba(0,201,107,0.2); }
+[data-theme="dark"] .compare-table td { color: #e8f5ec; border-bottom-color: rgba(0,201,107,0.08); }
+[data-theme="dark"] .compare-table .row-group td { background: #0d1a10; color: #7a9e82; }
+[data-theme="dark"] .compare-table tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+[data-theme="dark"] .cmp-row:nth-child(even) { background: rgba(255,255,255,0.02); }
+[data-theme="dark"] .cmp-feat { color: #e8f5ec; }
+
+/* Pricing plans */
+[data-theme="dark"] .plans { background: #111a14; }
+[data-theme="dark"] .plan { background: #0a0f0c; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .plan .plan-name { color: #7a9e82; }
+[data-theme="dark"] .plan .price-amount { color: #e8f5ec; }
+[data-theme="dark"] .plan .price-period { color: #7a9e82; }
+[data-theme="dark"] .plan .plan-desc { color: #7a9e82; border-bottom-color: rgba(0,201,107,0.1); }
+[data-theme="dark"] .plan .plan-features li { color: #e8f5ec; }
+[data-theme="dark"] .plan .plan-features li.disabled { color: #7a9e82; opacity: 0.5; }
+[data-theme="dark"] .plan-cta.outline { color: #e8f5ec; border-color: rgba(0,201,107,0.25); }
+[data-theme="dark"] .plan-cta.outline:hover { color: var(--green); border-color: var(--green); }
+[data-theme="dark"] .toggle-wrap { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); }
+[data-theme="dark"] .toggle-btn { color: rgba(255,255,255,0.5); }
+
+/* Contact page */
+[data-theme="dark"] .contact-page { background: #050a07; }
+[data-theme="dark"] .contact-form-wrap { background: #111a14; }
+[data-theme="dark"] .contact-form-wrap h2 { color: #e8f5ec; }
+[data-theme="dark"] .contact-form-wrap > p { color: #7a9e82; }
+[data-theme="dark"] .form-group label { color: #7a9e82; }
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group select,
+[data-theme="dark"] .form-group textarea { background: #0d1a10; border-color: rgba(0,201,107,0.2); color: #e8f5ec; }
+[data-theme="dark"] .form-group input::placeholder,
+[data-theme="dark"] .form-group textarea::placeholder { color: #7a9e82; }
+[data-theme="dark"] .what-to-expect h4 { color: #e8f5ec; }
+
+/* ROI calculator */
+[data-theme="dark"] section[style*="background:var(--light)"],
+[data-theme="dark"] .roi-section { background: #111a14 !important; }
+
+/* Footer */
+[data-theme="dark"] footer { background: #050a07 !important; }
+
+/* Auth pages */
+[data-theme="dark"] .auth-card { background: #111a14; border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .auth-card h2 { color: #e8f5ec; }
+[data-theme="dark"] .auth-card .sub { color: #7a9e82; }
+[data-theme="dark"] .plan-pill { border-color: rgba(0,201,107,0.2); }
+[data-theme="dark"] .plan-pill .pname { color: #e8f5ec; }
+[data-theme="dark"] .plan-pill.selected { background: rgba(0,201,107,0.1); }
+[data-theme="dark"] label { color: #7a9e82; }
+[data-theme="dark"] input,
+[data-theme="dark"] select { background: #0d1a10; border-color: rgba(0,201,107,0.2); color: #e8f5ec; }
+[data-theme="dark"] input::placeholder { color: #7a9e82; }
+[data-theme="dark"] .divider-text { color: #7a9e82; background: #111a14; }
+[data-theme="dark"] .divider-line { border-color: rgba(0,201,107,0.15); }
+[data-theme="dark"] .login-link { color: #7a9e82; }
+[data-theme="dark"] .notice { background: rgba(0,201,107,0.08); border-color: rgba(0,201,107,0.2); }
+
+/* Inline dark sections stay dark */
+[data-theme="dark"] .how,
+[data-theme="dark"] .cta-section { background: #050a07; }
+
+/* Generic inline style overrides for light backgrounds */
+[data-theme="dark"] section[style*="background:var(--white)"] { background: #0a0f0c !important; }
+[data-theme="dark"] section[style*="background:var(--light)"] { background: #111a14 !important; }
+[data-theme="dark"] div[style*="background:var(--white)"] { background: #111a14 !important; }
+[data-theme="dark"] div[style*="background:#f"] { background: #111a14 !important; }
+[data-theme="dark"] div[style*="background:white"] { background: #111a14 !important; }
+
+
+[data-theme="dark"] body { background: #0a0f0c !important; color: #e8f5ec !important; }
+[data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3, [data-theme="dark"] h4 { color: #e8f5ec !important; }
+[data-theme="dark"] p { color: #7a9e82 !important; }
+[data-theme="dark"] footer { background: #050a07 !important; }
+[data-theme="dark"] nav { background: rgba(10,15,12,0.97) !important; }
+[data-theme="dark"] .nav-logo { color: #e8f5ec !important; }
+[data-theme="dark"] section[style*="background:var(--light)"] { background: #111a14 !important; }
+[data-theme="dark"] section[style*="background:var(--white)"] { background: #0a0f0c !important; }
+[data-theme="dark"] div[style*="background:white"] { background: #111a14 !important; }
+[data-theme="dark"] .terms-content, [data-theme="dark"] main { color: #7a9e82 !important; }</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">mintt<span>.</span>ca</a>
+  <div class="nav-links">
+    <a href="index.html#how">How It Works</a>
+    <a href="index.html#features">Features</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="demo.html">Live Demo</a>
+    <a href="voice.html">Voice</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <button id="theme-toggle" title="Toggle dark mode">🌙</button>
+    <a href="login.html" id="nav-login" class="nav-cta" style="display:none;">Log In</a>
+    <a href="login.html" id="nav-dashboard" class="nav-cta" style="display:none;">Dashboard →</a>
+    <span id="nav-user-pill" style="display:none;background:var(--green);color:var(--black);padding:6px 14px;border-radius:100px;font-size:13px;font-weight:700;"></span>
+    <a href="signup.html" style="background:var(--green);color:var(--black);padding:10px 22px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s;" onmouseover="this.style.background='#00a356'" onmouseout="this.style.background='var(--green)'">Get Started →</a>
+  </div>
+</nav>
+
+<div class="legal-page">
+  <div class="legal-header">
+    <div class="legal-tag">Legal</div>
+    <h1>Terms of Service</h1>
+    <p class="legal-meta">Last updated: April 22, 2026 · Effective immediately upon account creation</p>
+  </div>
+
+  <div class="legal-content">
+    <div class="legal-box">
+      <p><strong>Please read these Terms of Service carefully before using Mintt.</strong> By accessing or using our services, you agree to be bound by these terms. If you do not agree, do not use our services.</p>
+    </div>
+
+    <h2>1. About Mintt</h2>
+    <p>Mintt ("Mintt", "we", "us", or "our") is a company incorporated in Ontario, Canada. We provide an AI-powered lead generation platform ("the Service") that enables businesses to capture, qualify, and manage website leads through an intelligent chat agent.</p>
+
+    <h2>2. Eligibility</h2>
+    <p>To use our Service, you must:</p>
+    <ul>
+      <li>Be at least 18 years of age</li>
+      <li>Be a registered business or operate as a sole proprietor</li>
+      <li>Have the legal authority to bind your business to these Terms</li>
+      <li>Be located in Canada or the United States</li>
+    </ul>
+
+    <h2>3. Your Account</h2>
+    <p>When you create an account with Mintt, you are responsible for:</p>
+    <ul>
+      <li>Maintaining the confidentiality of your login credentials</li>
+      <li>All activity that occurs under your account</li>
+      <li>Notifying us immediately of any unauthorized access</li>
+      <li>Ensuring all account information is accurate and current</li>
+    </ul>
+    <p>We reserve the right to suspend or terminate accounts that violate these Terms or that we reasonably believe are being used fraudulently.</p>
+
+    <h2>4. Subscription and Payment</h2>
+    <h3>4.1 Plans</h3>
+    <p>Mintt offers monthly and annual subscription plans as described on our Pricing page. All prices are in Canadian dollars (CAD) unless otherwise stated.</p>
+    <h3>4.2 Billing</h3>
+    <p>Your subscription renews automatically at the end of each billing period. You authorize us to charge your payment method on file for the applicable fees.</p>
+    <h3>4.3 Cancellation</h3>
+    <p>You may cancel your subscription at any time from your account dashboard. Cancellation takes effect at the end of your current billing period. We do not provide refunds for partial billing periods.</p>
+    <h3>4.4 Price Changes</h3>
+    <p>We reserve the right to change subscription prices with 30 days written notice. Continued use after the notice period constitutes acceptance of the new pricing.</p>
+
+    <h2>5. Acceptable Use</h2>
+    <p>You agree not to use the Service to:</p>
+    <ul>
+      <li>Violate any applicable laws or regulations</li>
+      <li>Collect personal information from minors under 13 years of age</li>
+      <li>Engage in deceptive, misleading, or fraudulent practices</li>
+      <li>Harass, abuse, or harm any person</li>
+      <li>Transmit spam, malware, or unauthorized advertising</li>
+      <li>Attempt to reverse engineer, copy, or replicate our AI technology</li>
+      <li>Resell or sublicense the Service without our written consent (except Agency plan clients)</li>
+    </ul>
+
+    <h2>6. Data and Privacy</h2>
+    <p>Your use of the Service is also governed by our <a href="privacy.html">Privacy Policy</a>, which is incorporated into these Terms by reference. You acknowledge that:</p>
+    <ul>
+      <li>You are responsible for obtaining appropriate consent from your website visitors before collecting their data</li>
+      <li>You must have a Privacy Policy on your website that discloses the use of chat tools and data collection</li>
+      <li>You own the lead data captured through your Mintt agent</li>
+      <li>Mintt processes data on your behalf as a data processor under PIPEDA</li>
+    </ul>
+
+    <h2>7. Intellectual Property</h2>
+    <p>All technology, software, designs, and content comprising the Mintt platform are the exclusive property of Mintt and are protected by applicable intellectual property laws.</p>
+    <p>You retain ownership of your business content, brand assets, and customer data. By using the Service, you grant Mintt a limited licence to use your content solely for the purpose of providing the Service.</p>
+
+    <h2>8. Disclaimers</h2>
+    <p>THE SERVICE IS PROVIDED "AS IS" WITHOUT WARRANTIES OF ANY KIND. TO THE FULLEST EXTENT PERMITTED BY LAW, MINTT DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
+    <p>Mintt does not guarantee:</p>
+    <ul>
+      <li>A specific number or quality of leads</li>
+      <li>That the AI agent will always respond accurately</li>
+      <li>Uninterrupted or error-free service</li>
+      <li>That leads captured will convert to customers</li>
+    </ul>
+
+    <h2>9. Limitation of Liability</h2>
+    <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, MINTT'S TOTAL LIABILITY TO YOU FOR ANY CLAIMS ARISING FROM OR RELATED TO THE SERVICE SHALL NOT EXCEED THE AMOUNT YOU PAID TO MINTT IN THE TWELVE (12) MONTHS PRECEDING THE CLAIM.</p>
+    <p>IN NO EVENT SHALL MINTT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING LOSS OF PROFITS, DATA, OR GOODWILL.</p>
+
+    <h2>10. Indemnification</h2>
+    <p>You agree to indemnify, defend, and hold harmless Mintt and its officers, directors, employees, and agents from any claims, damages, losses, liabilities, costs, and expenses arising from your use of the Service or your violation of these Terms.</p>
+
+    <h2>11. Termination</h2>
+    <p>Either party may terminate this agreement at any time. Mintt may terminate your account immediately if you violate these Terms. Upon termination, your access to the Service will cease and your data will be retained for 30 days before deletion, unless you request earlier deletion.</p>
+
+    <h2>12. Governing Law</h2>
+    <p>These Terms are governed by the laws of the Province of Ontario and the federal laws of Canada applicable therein. Any disputes shall be resolved in the courts of Ontario.</p>
+
+    <h2>13. Changes to Terms</h2>
+    <p>We may update these Terms from time to time. We will notify you of material changes by email or through the platform. Continued use of the Service after notice constitutes acceptance of the updated Terms.</p>
+
+    <h2>14. Contact</h2>
+    <p>If you have questions about these Terms, please contact us at:</p>
+    <p><strong>Mintt</strong><br>Ontario, Canada<br>Email: <a href="mailto:legal@mintt.ca">legal@mintt.ca</a></p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">mintt<span>.</span>ca</div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy.html">Privacy Policy</a>
+  </div>
+  <div class="footer-copy">© 2026 Mintt — Ontario, Canada.</div>
+</footer>
+<script src="mintt-widget.js"></script>
+
+<!-- Mintt Voice CTA -->
+<div id="mintt-call-btn" style="position:fixed;bottom:24px;left:24px;z-index:9999;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif">
+  <a href="tel:6475598674" style="text-decoration:none">
+    <div style="background:#10b981;border-radius:16px;padding:12px 18px;box-shadow:0 4px 20px rgba(16,185,129,0.4);cursor:pointer;display:flex;align-items:center;gap:12px" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='none'" style="transition:transform 0.2s">
+      <div style="width:40px;height:40px;background:rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.18 2 2 0 0 1 3.64 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.29 6.29l1.28-1.28a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </div>
+      <div>
+        <div style="color:#fff;font-size:12px;font-weight:600;opacity:0.85;margin-bottom:2px">Try our AI voice assistant</div>
+        <div style="color:#fff;font-size:16px;font-weight:700;letter-spacing:0.5px">647-559-8674</div>
+      </div>
+    </div>
+  </a>
+</div>
+<script src="mintt-shared.js"></script>
+</body>
+
+</html>
