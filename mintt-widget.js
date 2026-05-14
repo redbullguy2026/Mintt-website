@@ -218,7 +218,7 @@
       .mintt-qbtn { background: white; border: 1.5px solid rgba(0,201,107,0.25); color: #00a356; padding: 6px 12px; border-radius: 100px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all .2s; white-space: nowrap; font-family: inherit; }
       .mintt-qbtn:hover { background: #00c96b; color: white; border-color: #00c96b; }
       #mintt-input-bar { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid #e5e7eb; background: white; align-items: center; flex-shrink: 0; }
-      #mintt-input { flex: 1; border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 10px 14px; font-size: 14px; font-family: inherit; outline: none; transition: all .2s; background: #fafafa; min-width: 0; }
+      #mintt-input { flex: 1; border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 10px 14px; font-size: 14px; font-family: inherit; outline: none; transition: all .2s; background: #fafafa; min-width: 0; color: #080f0a; }
       #mintt-input:focus { border-color: #00c96b; background: white; }
       #mintt-send { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, #00a356, #00c96b); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all .2s; }
       #mintt-send:hover { transform: scale(1.05); }
@@ -335,7 +335,7 @@
     var msgs = document.getElementById('mintt-msgs');
     msgs.innerHTML = '';
     setTimeout(function() {
-      addMessage("👋 Hi! I'm the Mintt assistant.\n\nI can tell you about our pricing, features, how Mintt works, or book you a free demo.\n\nWhat would you like to know?", 'agent');
+      addMessage(formatMarkdown("👋 Hi! I'm the Mintt assistant.\n\nI can tell you about our pricing, features, how Mintt works, or book you a free demo.\n\nWhat would you like to know?"), 'agent');
     }, 300);
   }
 
@@ -351,7 +351,7 @@
       sessionStorage.setItem('mintt_opened', '1');
       document.getElementById('mintt-input').focus();
       if (document.getElementById('mintt-msgs').children.length === 0) {
-        addMessage("👋 Hi! I'm the Mintt assistant.\n\nI can tell you about our pricing, features, how Mintt works, or book you a free demo.\n\nWhat would you like to know?", 'agent');
+        addMessage(formatMarkdown("👋 Hi! I'm the Mintt assistant.\n\nI can tell you about our pricing, features, how Mintt works, or book you a free demo.\n\nWhat would you like to know?"), 'agent');
       }
     }
   }
