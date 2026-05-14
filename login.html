@@ -294,7 +294,7 @@ function doLogin() {
     try { stored = JSON.parse(localStorage.getItem('mintt-user')); } catch(e){}
     if (stored && stored.email === email) {
       // Redirect to dashboard
-      window.location.href = 'http://localhost:3000/dashboard.html';
+      window.location.href = '/dashboard.html';
     } else {
       // Simulate auth check against backend
       fetch('/api/login', {
@@ -330,7 +330,7 @@ function sendReset() {
   var email = document.getElementById('reset-email').value.trim();
   if (!email) return;
   // In production, hits /api/reset-password
-  alert('If an account exists for ' + email + ', a reset link has been sent to office@mintt.ca. Check your inbox.');
+  alert('If an account exists for ' + email + ', a reset link has been sent to ' + email + '. Check your inbox.');
   document.getElementById('reset-panel').style.display = 'none';
 }
 </script>

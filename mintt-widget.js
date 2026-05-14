@@ -15,7 +15,7 @@
   var KB = {
     pricing: {
       triggers: ['price','pricing','cost','how much','plan','plans','starter','growth','agency','pay','subscription','monthly','annual','affordable'],
-      answer: "We have three plans:\n\n💚 **Starter — $97/mo** · 1 location, AI chat, lead capture, scoring, dashboard, email alerts\n\n💚 **Growth — $197/mo** · Up to 3 locations, everything in Starter + image analysis, voice upload, customer confirmation emails\n\n💚 **Agency — $497/mo** · Unlimited locations, everything + white label (remove Mintt branding)\n\nAll plans include a free demo and setup. Annual plans save 20%.\n\nWould you like to book a free demo to see it live?"
+      answer: "We have three plans:\n\n💚 **Starter — $97/mo** · 1 location, AI chat, lead capture, scoring, dashboard, email alerts\n\n💚 **Growth — $247/mo** · Up to 3 locations, everything in Starter + image analysis, voice upload, customer confirmation emails\n\n💚 **Agency — $597/mo** · Unlimited locations, everything + white label (remove Mintt branding)\n\nAll plans include a free demo and setup. Annual plans save 20%.\n\nWould you like to book a free demo to see it live?"
     },
     features: {
       triggers: ['feature','features','what does','what can','capability','capabilities','do you','does it','image','photo','nameplate','voice','dashboard','scoring','hot lead','notification','email alert','widget','chat'],
@@ -356,12 +356,16 @@
     }
   }
 
+  function escapeHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+
   function sendMessage() {
     var input = document.getElementById('mintt-input');
     var text = input.value.trim();
     if (!text) return;
     input.value = '';
-    addMessage(text, 'user');
+    addMessage(escapeHtml(text).replace(/\n/g,'<br>'), 'user');
     messageCount++;
     // Quick buttons stay visible always
     showTyping();
