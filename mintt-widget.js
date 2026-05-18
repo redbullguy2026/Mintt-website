@@ -133,6 +133,19 @@
       localStorage.setItem('mintt_site_leads', JSON.stringify(leads));
       console.log('📧 Mintt demo lead captured:', capturedLead);
     } catch(e) {}
+
+    fetch('https://mintt-database-production.up.railway.app/chat/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        clientSlug: 'mintt',
+        name: capturedLead.name,
+        email: capturedLead.email,
+        phone: '',
+        serviceNeeded: '',
+        message: 'Demo request via Mintt website chat'
+      })
+    }).catch(function() {});
   }
 
   // ── Widget HTML ────────────────────────────────────────────────────────────
