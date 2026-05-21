@@ -567,6 +567,23 @@ footer{background:var(--off-black);padding:48px 40px 32px;border-top:1px solid r
 [data-theme="dark"] .pricing-faq > .pricing-faq-inner > p{color:#7a9e82;}
 [data-theme="dark"] .pricing-faq .faq-q{color:#e8f5ec;}
 [data-theme="dark"] .pricing-faq .faq-a{color:#7a9e82;}
+
+/* ── MOBILE NAV ── */
+#mobile-menu-btn{display:none;background:transparent;border:none;font-size:24px;cursor:pointer;color:var(--black);padding:4px 6px;line-height:1;flex-shrink:0;}
+@media(max-width:768px){#mobile-menu-btn{display:flex;align-items:center;justify-content:center;}}
+#mobile-nav{display:none;position:fixed;top:68px;left:0;right:0;z-index:99;background:rgba(255,255,255,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);flex-direction:column;padding:8px 24px 20px;}
+#mobile-nav.open{display:flex;}
+#mobile-nav a{font-size:16px;font-weight:500;color:var(--grey);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--border);transition:color .2s;}
+#mobile-nav a:last-child{border-bottom:none;padding-bottom:0;}
+#mobile-nav a:hover{color:var(--green);}
+[data-theme="dark"] #mobile-menu-btn{color:#e8f5ec;}
+[data-theme="dark"] #mobile-nav{background:rgba(10,15,12,0.97);border-bottom-color:rgba(0,201,107,0.12);}
+[data-theme="dark"] #mobile-nav a{color:#7a9e82;border-bottom-color:rgba(0,201,107,0.1);}
+
+/* ── TRUST BADGES ── */
+.trust-badges-bar{padding:14px 40px;background:var(--black);display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;border-top:1px solid rgba(0,201,107,0.12);}
+.trust-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,201,107,0.08);border:1px solid rgba(0,201,107,0.22);color:var(--green);padding:7px 16px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:0.02em;white-space:nowrap;}
+@media(max-width:768px){.trust-badges-bar{padding:12px 16px;gap:8px;}.trust-badge{font-size:11px;padding:6px 12px;}}
 </style>
 </head>
 <body>
@@ -584,12 +601,31 @@ footer{background:var(--off-black);padding:48px 40px 32px;border-top:1px solid r
   </div>
   <div style="display:flex;align-items:center;gap:10px;">
     <button id="theme-toggle" title="Toggle dark mode">🌙</button>
+    <button id="mobile-menu-btn" aria-label="Open menu" onclick="toggleMobileNav()">☰</button>
     <a href="https://mintt-database-production.up.railway.app/login.html" id="nav-login" class="nav-cta" style="display:none;">Log In</a>
     <a href="https://mintt-database-production.up.railway.app/admin.html" id="nav-dashboard" class="nav-cta" style="display:none;">Dashboard →</a>
     <span id="nav-user-pill" style="display:none;background:var(--green);color:var(--black);padding:6px 14px;border-radius:100px;font-size:13px;font-weight:700;"></span>
     <a href="https://mintt-database-production.up.railway.app/login.html?signup=1" style="background:var(--green);color:var(--black);padding:10px 22px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s;" onmouseover="this.style.background='#00a356'" onmouseout="this.style.background='var(--green)'">Get Started →</a>
   </div>
 </nav>
+
+<!-- MOBILE NAV DROPDOWN -->
+<div id="mobile-nav">
+  <a href="#how" onclick="toggleMobileNav()">How It Works</a>
+  <a href="#features" onclick="toggleMobileNav()">Features</a>
+  <a href="#voice" onclick="toggleMobileNav()">Voice</a>
+  <a href="#demo" onclick="toggleMobileNav()">Live Demo</a>
+  <a href="#pricing" onclick="toggleMobileNav()">Pricing</a>
+  <a href="#contact" onclick="toggleMobileNav()">Contact</a>
+</div>
+<script>
+function toggleMobileNav(){
+  var nav=document.getElementById('mobile-nav');
+  var btn=document.getElementById('mobile-menu-btn');
+  nav.classList.toggle('open');
+  btn.textContent=nav.classList.contains('open')?'✕':'☰';
+}
+</script>
 
 <!-- SOCIAL PROOF BAR -->
 <div class="social-proof-bar" style="position:relative;z-index:98;background:rgba(0,201,107,0.08);border-bottom:1px solid rgba(0,201,107,0.15);padding:10px 40px;display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;margin-top:68px;">
@@ -622,7 +658,7 @@ footer{background:var(--off-black);padding:48px 40px 32px;border-top:1px solid r
     </h1>
     <p class="hero-sub">Mintt puts an AI agent on your website that responds to every visitor instantly — capturing leads, qualifying projects, and alerting you in real time. 24 hours a day.</p>
     <div class="hero-actions">
-      <a href="#contact" class="btn-primary">Book a Free Demo →</a>
+      <a href="https://mintt-database-production.up.railway.app/login.html?signup=1" class="btn-primary">Get Started Free →</a>
       <a href="#how" class="btn-ghost">See How It Works</a>
     </div>
     <div class="hero-stats">
@@ -632,6 +668,14 @@ footer{background:var(--off-black);padding:48px 40px 32px;border-top:1px solid r
     </div>
   </div>
 </section>
+
+<!-- TRUST BADGES -->
+<div class="trust-badges-bar">
+  <div class="trust-badge">🔒 PIPEDA Compliant</div>
+  <div class="trust-badge">🍁 Canadian Data Storage</div>
+  <div class="trust-badge">⚡ 24/7 Uptime</div>
+  <div class="trust-badge">🛡️ SOC 2 Secured</div>
+</div>
 
 <!-- CHAT PREVIEW -->
 <section class="chat-preview">
@@ -869,7 +913,7 @@ footer{background:var(--off-black);padding:48px 40px 32px;border-top:1px solid r
         <div class="stars">★★★★★</div>
         <p class="tquote">"We had a sparking panel emergency come in at 11pm through Mintt. The agent captured the lead, flagged it HOT, and I was on site by 7am. That job was worth $4,200."</p>
         <div class="tauthor">
-          <div class="tavatar">MK</div>
+          <div class="tavatar" style="background:linear-gradient(135deg,#2563eb,#60a5fa);color:#fff;font-size:14px;font-weight:700;letter-spacing:0.5px;">MK</div>
           <div><div class="tname">Mike K.</div><div class="trole">Electrical Contractor, Ontario</div></div>
         </div>
       </div>
@@ -877,7 +921,7 @@ footer{background:var(--off-black);padding:48px 40px 32px;border-top:1px solid r
         <div class="stars">★★★★★</div>
         <p class="tquote">"Our website was just a brochure before. Now it's generating 8–12 qualified leads a week. Customers get a quote started instantly — we just close the deal."</p>
         <div class="tauthor">
-          <div class="tavatar">SR</div>
+          <div class="tavatar" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;font-size:14px;font-weight:700;letter-spacing:0.5px;">SR</div>
           <div><div class="tname">Sarah R.</div><div class="trole">Electrical Distributor, Ontario</div></div>
         </div>
       </div>
@@ -885,7 +929,7 @@ footer{background:var(--off-black);padding:48px 40px 32px;border-top:1px solid r
         <div class="stars">★★★★★</div>
         <p class="tquote">"Setup took 45 minutes. By the next morning we had 3 leads in the dashboard. Mintt paid for itself in the first week."</p>
         <div class="tauthor">
-          <div class="tavatar">DJ</div>
+          <div class="tavatar" style="background:linear-gradient(135deg,#d97706,#fbbf24);color:#fff;font-size:14px;font-weight:700;letter-spacing:0.5px;">DJ</div>
           <div><div class="tname">Dan J.</div><div class="trole">Controls Integrator, Ontario</div></div>
         </div>
       </div>
