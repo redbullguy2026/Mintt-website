@@ -393,6 +393,180 @@ footer{background:var(--off-black);padding:48px 40px 32px;border-top:1px solid r
 [data-theme="dark"] div[style*="color:rgba(255,255,255,.45)"] { color: rgba(255,255,255,0.45) !important; }
 [data-theme="dark"] section[style*="background:#f4faf6"] { background: #111a14 !important; }
 [data-theme="dark"] section[style*="background:#ffffff"] { background: #0a0f0c !important; }
+
+/* ── DEMO SECTION ── */
+.persona-switch{display:inline-flex;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:5px;gap:5px;margin-bottom:48px;}
+.persona-btn{padding:10px 28px;border-radius:100px;border:none;font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .25s;background:transparent;color:rgba(255,255,255,0.5);}
+.persona-btn.active{background:var(--green);color:var(--black);}
+.persona-btn:hover:not(.active){color:#fff;}
+.demo-layout{display:grid;grid-template-columns:1fr 420px;gap:40px;align-items:start;max-width:1100px;margin:0 auto;}
+.context-panel{position:sticky;top:90px;}
+.context-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(0,201,107,0.1);border:1px solid rgba(0,201,107,0.2);color:var(--green);padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;margin-bottom:20px;}
+.context-panel h2{font-size:26px;font-weight:800;letter-spacing:-1px;margin-bottom:10px;line-height:1.2;color:#fff;}
+.context-panel p{font-size:15px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:24px;}
+.context-panel h3{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,0.3);margin-bottom:12px;}
+.suggested-questions{display:flex;flex-direction:column;gap:8px;margin-bottom:28px;}
+.sq-btn{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 16px;font-family:'Outfit',sans-serif;font-size:13px;color:rgba(255,255,255,0.7);cursor:pointer;text-align:left;transition:all .2s;line-height:1.4;}
+.sq-btn:hover{background:rgba(0,201,107,0.08);border-color:rgba(0,201,107,0.2);color:#fff;}
+.sq-btn::before{content:'→ ';color:var(--green);}
+.what-mintt-shows{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:20px;}
+.what-mintt-shows h4{font-size:13px;font-weight:700;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;}
+.feature-pill-demo{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;color:rgba(255,255,255,0.6);}
+.feature-pill-demo:last-child{border-bottom:none;}
+.feature-pill-demo .icon{font-size:16px;width:24px;text-align:center;flex-shrink:0;}
+.demo-chat-window{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.08);}
+.demo-chat-header{padding:16px 18px;display:flex;align-items:center;gap:12px;}
+.demo-chat-header.contractor{background:linear-gradient(135deg,#0a1628,#1a2d4a);}
+.demo-chat-header.distributor{background:linear-gradient(135deg,#080f0a,#0d2416);}
+.dch-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.dch-avatar.contractor{background:linear-gradient(135deg,#1a6bcc,#4db6e8);}
+.dch-avatar.distributor{background:linear-gradient(135deg,#00a356,#00c96b);}
+.dch-info{flex:1;}
+.dch-name{font-size:14px;font-weight:700;color:#fff;}
+.dch-status{display:flex;align-items:center;gap:5px;margin-top:2px;}
+.dch-dot{width:6px;height:6px;background:#4ade80;border-radius:50%;animation:pls 2s infinite;}
+@keyframes pls{0%,100%{opacity:1}50%{opacity:.4}}
+.dch-online{font-size:11px;color:rgba(255,255,255,.5);}
+.dch-reset{background:rgba(255,255,255,.1);border:none;color:rgba(255,255,255,.6);font-size:11px;font-family:'Outfit',sans-serif;font-weight:500;padding:5px 10px;border-radius:6px;cursor:pointer;transition:all .2s;}
+.dch-reset:hover{background:rgba(255,255,255,.2);color:#fff;}
+.demo-messages{height:360px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:#f7fdf9;}
+.demo-messages::-webkit-scrollbar{width:4px;}
+.demo-messages::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:2px;}
+.dmsg{max-width:84%;padding:11px 14px;border-radius:14px;font-size:13.5px;line-height:1.6;word-break:break-word;}
+.dmsg.agent{align-self:flex-start;background:#fff;color:#080f0a;border-bottom-left-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,.07);}
+.dmsg.agent.contractor-theme{border-left:3px solid #4db6e8;}
+.dmsg.agent.distributor-theme{border-left:3px solid #00c96b;}
+.dmsg.user{align-self:flex-end;color:#fff;border-bottom-right-radius:4px;font-weight:500;}
+.dmsg.user.contractor-theme{background:linear-gradient(135deg,#1a6bcc,#4db6e8);}
+.dmsg.user.distributor-theme{background:linear-gradient(135deg,#00a356,#00c96b);}
+.demo-typing-ind{align-self:flex-start;background:#fff;padding:12px 16px;border-radius:14px;border-bottom-left-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,.07);}
+.demo-typing-ind-dots{display:flex;gap:4px;}
+.demo-typing-ind-dots span{width:6px;height:6px;border-radius:50%;animation:dtyp 1.4s infinite;}
+.contractor-theme .demo-typing-ind-dots span{background:#4db6e8;}
+.distributor-theme .demo-typing-ind-dots span{background:#00c96b;}
+.demo-typing-ind-dots span:nth-child(2){animation-delay:.2s}.demo-typing-ind-dots span:nth-child(3){animation-delay:.4s}
+@keyframes dtyp{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-6px);opacity:1}}
+.demo-faq-bar{padding:10px 12px;background:#fff;border-top:1px solid #e5e7eb;display:flex;gap:6px;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none;}
+.demo-faq-bar::-webkit-scrollbar{display:none;}
+.demo-faq-pill{white-space:nowrap;padding:6px 12px;border-radius:100px;font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid;transition:all .2s;font-family:'Outfit',sans-serif;}
+.demo-faq-pill.contractor-pill{background:#f0f7ff;border-color:#bfdbfe;color:#1d4ed8;}
+.demo-faq-pill.contractor-pill:hover{background:#1a6bcc;color:#fff;border-color:#1a6bcc;}
+.demo-faq-pill.distributor-pill{background:#f0fdf4;border-color:#bbf7d0;color:#15803d;}
+.demo-faq-pill.distributor-pill:hover{background:#00c96b;color:#fff;border-color:#00c96b;}
+.demo-input-bar{display:flex;gap:8px;padding:10px 12px;border-top:1px solid #e5e7eb;background:#fff;align-items:center;}
+.demo-input{flex:1;border:1.5px solid #e5e7eb;border-radius:10px;padding:10px 14px;font-size:14px;font-family:'Outfit',sans-serif;outline:none;transition:all .2s;background:#fafafa;min-width:0;color:#080f0a;}
+.demo-input.contractor-input:focus{border-color:#4db6e8;}
+.demo-input.distributor-input:focus{border-color:#00c96b;}
+.demo-send{width:36px;height:36px;border-radius:10px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;}
+.demo-send.contractor-send{background:linear-gradient(135deg,#1a6bcc,#4db6e8);}
+.demo-send.distributor-send{background:linear-gradient(135deg,#00a356,#00c96b);}
+.demo-send:hover{transform:scale(1.06);}
+.demo-send svg{width:15px;height:15px;}
+.demo-powered-bar{text-align:center;padding:8px;font-size:11px;color:#9ca3af;background:#fff;border-top:1px solid #f3f4f6;}
+.demo-powered-bar a{color:var(--green);text-decoration:none;font-weight:600;}
+.demo-note-banner{background:rgba(0,201,107,0.06);border:1px solid rgba(0,201,107,0.15);border-radius:14px;padding:18px 24px;display:flex;align-items:flex-start;gap:14px;max-width:1100px;margin:0 auto 40px;}
+.demo-note-banner p{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.6;}
+.demo-note-banner strong{color:#fff;}
+@media(max-width:900px){.demo-layout{grid-template-columns:1fr;}.context-panel{position:static;}}
+
+/* ── PRICING SECTION ── */
+.pricing-hero-sec{padding:80px 40px 60px;background:var(--black);text-align:center;position:relative;overflow:hidden;}
+.pricing-hero-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 0%,rgba(0,201,107,0.15) 0%,transparent 70%);}
+.pricing-hero-inner{max-width:700px;margin:0 auto;position:relative;z-index:1;}
+.toggle-wrap{display:inline-flex;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:100px;padding:4px;gap:4px;}
+.toggle-btn{padding:8px 24px;border-radius:100px;border:none;font-family:'Outfit',sans-serif;font-size:14px;font-weight:500;cursor:pointer;transition:all .2s;background:transparent;color:rgba(255,255,255,0.5);}
+.toggle-btn.active{background:var(--green);color:var(--black);font-weight:700;}
+.save-badge{display:inline-block;background:rgba(0,201,107,0.15);color:var(--green);font-size:11px;font-weight:700;padding:4px 10px;border-radius:100px;margin-left:8px;border:1px solid rgba(0,201,107,0.25);}
+.plans{padding:60px 40px 80px;background:var(--light);}
+.plans-inner{max-width:1100px;margin:0 auto;}
+.plans-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-items:start;}
+.plan{background:var(--white);border-radius:20px;padding:36px;border:1.5px solid var(--border);transition:all .3s;position:relative;}
+.plan:hover{border-color:var(--green);transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,0.08);}
+.plan.featured{background:var(--black);border-color:var(--green);transform:translateY(-8px);box-shadow:0 24px 60px rgba(0,201,107,0.2);}
+.plan-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--green);color:var(--black);font-size:12px;font-weight:700;padding:6px 18px;border-radius:100px;white-space:nowrap;letter-spacing:.04em;}
+.plan-name{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--grey);margin-bottom:12px;}
+.plan.featured .plan-name{color:rgba(255,255,255,0.5);}
+.plan-price{margin-bottom:8px;}
+.price-amount{font-size:52px;font-weight:900;letter-spacing:-2px;color:var(--black);line-height:1;}
+.plan.featured .price-amount{color:var(--white);}
+.price-period{font-size:15px;color:var(--grey);font-weight:400;}
+.plan.featured .price-period{color:rgba(255,255,255,0.4);}
+.price-annual{font-size:13px;color:var(--green);margin-bottom:24px;font-weight:500;min-height:20px;}
+.plan-desc{font-size:14px;color:var(--grey);line-height:1.6;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border);}
+.plan.featured .plan-desc{color:rgba(255,255,255,0.5);border-color:rgba(255,255,255,0.08);}
+.plan-features{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:32px;}
+.plan-features li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--black);}
+.plan.featured .plan-features li{color:rgba(255,255,255,0.8);}
+.plan-features li .check{color:var(--green);font-size:16px;flex-shrink:0;margin-top:1px;}
+.plan-features li .cross{color:#ccc;font-size:16px;flex-shrink:0;margin-top:1px;}
+.plan-features li.disabled{color:var(--grey);opacity:0.5;}
+.plan-cta{display:block;text-align:center;padding:14px;border-radius:10px;font-size:15px;font-weight:700;text-decoration:none;transition:all .25s;cursor:pointer;border:none;font-family:'Outfit',sans-serif;}
+.plan-cta.outline{background:transparent;color:var(--black);border:2px solid var(--border);}
+.plan-cta.outline:hover{border-color:var(--green);color:var(--green);}
+.plan-cta.solid{background:var(--green);color:var(--black);}
+.plan-cta.solid:hover{background:var(--green-mid);transform:translateY(-1px);}
+.pricing-faq{padding:60px 40px 80px;background:#f4faf6;}
+.pricing-faq-inner{max-width:760px;margin:0 auto;}
+.pricing-faq h2{font-size:36px;font-weight:800;letter-spacing:-1.5px;margin-bottom:8px;color:var(--black);}
+.pricing-faq p{font-size:15px;color:var(--grey);margin-bottom:40px;}
+.pricing-faq .faq-item{border-bottom:1px solid var(--border);padding:20px 0;background:transparent;}
+.pricing-faq .faq-q{font-size:16px;font-weight:600;color:var(--black);margin-bottom:10px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+.pricing-faq .faq-a{font-size:14px;color:var(--grey);line-height:1.7;}
+@media(max-width:768px){.plans-grid{grid-template-columns:1fr;}.plan.featured{transform:none;}}
+
+/* ── CONTACT SECTION ── */
+.contact-sec{padding:100px 40px 80px;background:#080f0a;position:relative;overflow:hidden;}
+.contact-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 30% 50%,rgba(0,201,107,0.12) 0%,transparent 70%);pointer-events:none;}
+.contact-sec-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;position:relative;z-index:1;}
+.contact-desc{font-size:16px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:40px;}
+.what-to-expect{display:flex;flex-direction:column;gap:16px;}
+.expect-item{display:flex;align-items:flex-start;gap:14px;}
+.expect-num{width:28px;height:28px;border-radius:50%;background:rgba(0,201,107,0.12);border:1px solid rgba(0,201,107,0.2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--green);flex-shrink:0;}
+.expect-item h4{font-size:14px;font-weight:600;color:#fff;margin-bottom:4px;}
+.expect-item p{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.5;}
+.contact-form-wrap{background:#fff;border-radius:24px;padding:40px;}
+.contact-form-wrap h2{font-size:22px;font-weight:800;color:#080f0a;margin-bottom:8px;letter-spacing:-0.5px;}
+.contact-form-wrap > p{font-size:14px;color:#6b7a72;margin-bottom:28px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.form-group{margin-bottom:16px;}
+.form-group label{display:block;font-size:12px;font-weight:600;color:#6b7a72;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 16px;border:1.5px solid #e5e7eb;border-radius:10px;font-family:'Outfit',sans-serif;font-size:14px;color:#080f0a;background:#fafafa;outline:none;transition:all .2s;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--green);background:#fff;box-shadow:0 0 0 3px rgba(0,201,107,0.1);}
+.form-group input::placeholder,.form-group textarea::placeholder{color:#aaa;}
+.form-group textarea{resize:vertical;min-height:100px;}
+.form-submit{width:100%;padding:14px;background:var(--green);color:#080f0a;border:none;border-radius:10px;font-family:'Outfit',sans-serif;font-size:16px;font-weight:700;cursor:pointer;transition:all .25s;margin-top:8px;}
+.form-submit:hover{background:#00e87a;transform:translateY(-2px);}
+.form-submit:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+.form-note{font-size:12px;color:#6b7a72;text-align:center;margin-top:12px;}
+.cal-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:36px 24px;background:#f4faf6;border-radius:14px;margin-top:24px;text-align:center;}
+.cal-placeholder h4{font-size:15px;font-weight:700;color:#080f0a;}
+.cal-placeholder p{font-size:13px;color:#6b7a72;max-width:260px;line-height:1.6;}
+.cal-placeholder a{background:var(--green);color:#080f0a;padding:10px 20px;border-radius:8px;font-weight:700;text-decoration:none;font-size:14px;}
+.contact-success{display:none;text-align:center;padding:60px 20px;}
+.contact-success.show{display:block;}
+.contact-success .success-icon{font-size:56px;margin-bottom:20px;}
+.contact-success h2{font-size:28px;font-weight:800;color:#080f0a;margin-bottom:10px;}
+.contact-success p{font-size:15px;color:#6b7a72;line-height:1.7;}
+@media(max-width:768px){.contact-sec-inner{grid-template-columns:1fr;gap:40px;}.form-row{grid-template-columns:1fr;}.contact-sec{padding:80px 24px 60px;}}
+[data-theme="dark"] .contact-sec{background:#050a07;}
+[data-theme="dark"] .contact-form-wrap{background:#111a14;}
+[data-theme="dark"] .contact-form-wrap h2{color:#e8f5ec;}
+[data-theme="dark"] .contact-form-wrap > p{color:#7a9e82;}
+[data-theme="dark"] .form-group label{color:#7a9e82;}
+[data-theme="dark"] .form-group input,[data-theme="dark"] .form-group select,[data-theme="dark"] .form-group textarea{background:#0d1a10;border-color:rgba(0,201,107,0.2);color:#e8f5ec;}
+[data-theme="dark"] .form-note{color:#7a9e82;}
+[data-theme="dark"] .cal-placeholder{background:#0d1a10;}
+[data-theme="dark"] .cal-placeholder h4{color:#e8f5ec;}
+[data-theme="dark"] .cal-placeholder p{color:#7a9e82;}
+[data-theme="dark"] .contact-success h2{color:#e8f5ec;}
+[data-theme="dark"] .contact-success p{color:#7a9e82;}
+[data-theme="dark"] .plans{background:#111a14;}
+[data-theme="dark"] .plan{background:#0a0f0c;border-color:rgba(0,201,107,0.15);}
+[data-theme="dark"] .pricing-faq{background:#0a0f0c;}
+[data-theme="dark"] .pricing-faq h2{color:#e8f5ec;}
+[data-theme="dark"] .pricing-faq > .pricing-faq-inner > p{color:#7a9e82;}
+[data-theme="dark"] .pricing-faq .faq-q{color:#e8f5ec;}
+[data-theme="dark"] .pricing-faq .faq-a{color:#7a9e82;}
 </style>
 </head>
 <body>
@@ -401,12 +575,12 @@ footer{background:var(--off-black);padding:48px 40px 32px;border-top:1px solid r
 <nav>
   <a href="index.html" class="nav-logo">mintt<span>.</span>ca</a>
   <div class="nav-links">
-    <a href="index.html#how">How It Works</a>
-    <a href="index.html#features">Features</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="demo.html">Live Demo</a>
-    <a href="voice.html">Voice</a>
-    <a href="contact.html">Contact</a>
+    <a href="#how">How It Works</a>
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#demo">Live Demo</a>
+    <a href="#voice">Voice</a>
+    <a href="#contact">Contact</a>
   </div>
   <div style="display:flex;align-items:center;gap:10px;">
     <button id="theme-toggle" title="Toggle dark mode">🌙</button>
@@ -428,7 +602,7 @@ footer{background:var(--off-black);padding:48px 40px 32px;border-top:1px solid r
   </div>
   <div style="width:1px;height:16px;background:rgba(255,255,255,0.1);"></div>
   <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,0.7);">
-    <span style="color:#00c96b;font-weight:700;">📅</span> <a href="contact.html" style="color:#00c96b;font-weight:600;text-decoration:none;">Book a free demo →</a>
+    <span style="color:#00c96b;font-weight:700;">📅</span> <a href="#contact" style="color:#00c96b;font-weight:600;text-decoration:none;">Book a free demo →</a>
   </div>
 </div>
 
@@ -448,7 +622,7 @@ footer{background:var(--off-black);padding:48px 40px 32px;border-top:1px solid r
     </h1>
     <p class="hero-sub">Mintt puts an AI agent on your website that responds to every visitor instantly — capturing leads, qualifying projects, and alerting you in real time. 24 hours a day.</p>
     <div class="hero-actions">
-      <a href="contact.html" class="btn-primary">Book a Free Demo →</a>
+      <a href="#contact" class="btn-primary">Book a Free Demo →</a>
       <a href="#how" class="btn-ghost">See How It Works</a>
     </div>
     <div class="hero-stats">
@@ -991,7 +1165,7 @@ function runPreview() {
 </script>
 
 <!-- VOICE AI NOW LIVE -->
-<section style="padding:100px 40px;background:var(--white);overflow:hidden;position:relative;">
+<section id="voice" style="padding:100px 40px;background:var(--white);overflow:hidden;position:relative;">
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 100% 50%,rgba(0,201,107,0.07) 0%,transparent 70%);pointer-events:none;"></div>
   <div style="max-width:1100px;margin:0 auto;position:relative;">
     <!-- Header -->
@@ -1001,7 +1175,7 @@ function runPreview() {
     </div>
     <div class="section-title" style="max-width:640px;">Your AI agent, <span style="color:var(--green);">now with a voice.</span></div>
     <p style="font-size:17px;color:var(--grey);line-height:1.75;max-width:580px;margin-bottom:60px;">Mintt Voice lets your customers call in and speak to your AI agent — 24/7. It qualifies them, captures their info, and alerts you the moment a hot lead calls.</p>
-        <a href="voice.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#080f0a;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;margin-bottom:60px;">See Mintt Voice →</a>
+        <a href="#voice" style="display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#080f0a;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;margin-bottom:60px;">See Mintt Voice →</a>
 
     <!-- Two-col layout -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
@@ -1125,7 +1299,7 @@ function runPreview() {
         <div style="font-size:18px;font-weight:800;color:white;letter-spacing:-0.3px;">Be first in line when it launches.</div>
         <div style="font-size:14px;color:rgba(255,255,255,0.4);margin-top:4px;">Early access for existing Mintt clients. Join the waitlist today.</div>
       </div>
-      <a href="contact.html" class="btn-primary" style="white-space:nowrap;">Get Early Access →</a>
+      <a href="#contact" class="btn-primary" style="white-space:nowrap;">Get Early Access →</a>
     </div>
   </div>
 </section>
@@ -1219,8 +1393,8 @@ function runPreview() {
     <h2>Ready to start closing<br><span>more jobs?</span></h2>
     <p>Book a free 20-minute demo. We'll show you exactly how Mintt works for your business and have you live within the hour.</p>
     <div class="cta-actions">
-      <a href="contact.html" class="btn-primary">Book a Free Demo →</a>
-      <a href="pricing.html" class="btn-ghost">View Pricing</a>
+      <a href="#contact" class="btn-primary">Book a Free Demo →</a>
+      <a href="#pricing" class="btn-ghost">View Pricing</a>
     </div>
   </div>
 </section>
@@ -1269,7 +1443,7 @@ function runPreview() {
             <div style="font-size:13px;color:rgba(255,255,255,.45);margin-bottom:4px;">With Mintt (3× conversion lift)</div>
             <div class="roi-output-val roi-green" id="roi-with-mintt">—</div>
           </div>
-          <a href="contact.html" class="btn-primary" style="display:block;text-align:center;width:100%;box-sizing:border-box;">Book a Free Demo →</a>
+          <a href="#contact" class="btn-primary" style="display:block;text-align:center;width:100%;box-sizing:border-box;">Book a Free Demo →</a>
           <div style="font-size:11px;color:rgba(255,255,255,.25);text-align:center;margin-top:12px;">Estimates based on industry averages</div>
         </div>
       </div>
@@ -1353,15 +1527,447 @@ function runPreview() {
 })();
 </script>
 
+<!-- LIVE DEMO -->
+<section id="demo" style="padding:80px 40px;background:var(--black);">
+  <div style="max-width:1100px;margin:0 auto;text-align:center;margin-bottom:48px;">
+    <div class="section-label" style="color:var(--green);">Interactive Demo</div>
+    <div class="section-title" style="color:var(--white);margin-bottom:12px;">Try Mintt live. Pick your industry.</div>
+    <p style="font-size:17px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:32px;">These are real AI agents — not scripted demos. Type any question you'd expect a customer to ask.</p>
+    <div class="persona-switch">
+      <button class="persona-btn active" id="demo-btn-contractor" onclick="demoSetPersona('contractor')">⚡ Electrical Contractor</button>
+      <button class="persona-btn" id="demo-btn-distributor" onclick="demoSetPersona('distributor')">📦 Electrical Distributor</button>
+    </div>
+  </div>
+  <div class="demo-note-banner">
+    <div style="font-size:20px;flex-shrink:0;margin-top:2px;">💡</div>
+    <p><strong>This is a live AI agent.</strong> It's trained on generic industry knowledge — not a specific company. In a real Mintt setup, it's trained on your products, pricing, brands, and services.</p>
+  </div>
+  <div class="demo-layout">
+    <div class="context-panel" id="demo-context-panel"></div>
+    <div class="demo-chat-window">
+      <div class="demo-chat-header" id="demo-chat-header">
+        <div class="dch-avatar" id="demo-ch-avatar">⚡</div>
+        <div class="dch-info">
+          <div class="dch-name" id="demo-ch-name">Electrical Contractor Agent</div>
+          <div class="dch-status">
+            <div class="dch-dot"></div>
+            <span class="dch-online">AI Agent — Online now</span>
+          </div>
+        </div>
+        <button class="dch-reset" onclick="demoResetChat()">↺ Reset</button>
+      </div>
+      <div class="demo-messages" id="demo-messages"></div>
+      <div class="demo-faq-bar" id="demo-faq-bar"></div>
+      <div class="demo-input-bar">
+        <input type="text" class="demo-input" id="demo-input" placeholder="Ask something a customer would ask..."/>
+        <button class="demo-send" id="demo-send" onclick="demoSendMsg()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+        </button>
+      </div>
+      <div class="demo-powered-bar">Powered by <a href="https://mintt.ca">Mintt.ca</a> — AI Lead Agent</div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+var demoCurrentPersona='contractor';
+var demoIsTyping=false;
+var demoPersonas={
+  contractor:{
+    name:'Electrical Contractor Agent',avatar:'⚡',headerClass:'contractor',theme:'contractor-theme',inputClass:'contractor-input',sendClass:'contractor-send',pillClass:'contractor-pill',
+    tag:'⚡ Electrical Contractor',title:'See Mintt as an electrical contractor agent',
+    desc:'This agent represents a commercial electrical contractor. It captures leads for panel upgrades, automation projects, emergency service, and new construction.',
+    welcome:"Hi! I'm here to connect you with our electrical team. Whether you're looking for panel work, automation, or emergency service — we can help.\n\nWhat can I assist you with today?",
+    faqs:['Do you offer emergency service?','What are your business hours?','Can you upgrade my electrical panel?','Do you do building automation?','Do you handle new construction?','I need an electrician today'],
+    features:[{icon:'🚨',text:'Detects emergency / urgent language instantly'},{icon:'📞',text:'Captures name and phone for callback'},{icon:'🔴',text:'HOT lead alert sent to your inbox immediately'},{icon:'📋',text:'Collects project details — no form needed'},{icon:'🛡️',text:'Never gives advice or quotes — protects your liability'}],
+    responses:{
+      emergency:["🚨 If there is immediate danger, call 911 or your utility emergency line now.\n⚡ Our team responds to electrical emergencies — what's the best number to reach you?","🚨 Electrical emergencies are treated as our highest priority.\n📞 What's your name and the best number to reach you immediately? Our team will call you back right away."],
+      panel:["📋 We handle all types of electrical panel work — upgrades, replacements, new service installations, and load centre conversions.\n📞 What's your name and best callback number so our estimator can follow up?","📋 Panel upgrades are one of our most common projects — residential, commercial, and industrial.\n📞 What's the best number to reach you?"],
+      automation:["📋 We specialize in building automation, PLC programming, and controls integration for commercial and industrial facilities.\n📞 What's the best number to reach you to discuss your project scope?","📋 Our controls team handles PLC, VFD integration, motor control centres, and building management systems.\n📞 What's your name and best number so our automation team can follow up?"],
+      service:["📋 We provide commercial and industrial electrical service — troubleshooting, repairs, maintenance contracts, and new installations.\n📞 What's your name and best number so our team can reach out?","📋 Our licensed electricians cover everything from single outlet repairs to full facility maintenance.\n📞 What's the best number to reach you?"],
+      area:["📋 We serve the Greater Toronto Area, Hamilton, Kitchener-Waterloo, and surrounding Ontario regions.\n📞 Can I get your name and best number to confirm service to your location?"],
+      hours:["📋 Office hours: Monday–Friday, 7:00am–5:00pm EST.\n⚡ Emergency service is available 24 hours a day, 7 days a week.\n📞 What can we help you with today?"],
+      quote:["📋 Pricing is always determined by our team after a site assessment — every job is different.\n📞 What's the best number to reach you to arrange a visit from our estimator?"],
+      new_construction:["📋 We handle new construction electrical from rough-in through final inspection — residential, commercial, and industrial.\n📞 What's the project type and best number to reach you?"],
+      general:["📋 Our licensed team will be best positioned to help with that directly.\n📞 What's your name and best number to reach you?","📋 Noted — our team handles that on site.\n📞 What's the best number for our team to call you back?"]
+    }
+  },
+  distributor:{
+    name:'Electrical Distributor Agent',avatar:'📦',headerClass:'distributor',theme:'distributor-theme',inputClass:'distributor-input',sendClass:'distributor-send',pillClass:'distributor-pill',
+    tag:'📦 Electrical Distributor',title:'See Mintt as an electrical distributor agent',
+    desc:'This agent represents an electrical products distributor. It answers product availability questions, handles quote requests, and captures contact info.',
+    welcome:"Hi! I'm here to help with product availability, pricing inquiries, and quotes.\n\nWhat are you looking for today?",
+    faqs:['Do you carry ABB drives?','I need a VFD for a 15HP 460V motor','What brands do you carry?','Do you have transformers in stock?','What are your shipping options?','Help me size a drive from nameplate'],
+    features:[{icon:'📸',text:'Reads motor nameplate photos — matches specs to correct drive'},{icon:'📦',text:'Confirms product availability by brand and category'},{icon:'💰',text:'Captures contact info for quote follow-up'},{icon:'🏷️',text:'Knows your brands — ABB, Eaton, Weidmüller, Rittal and more'},{icon:'🛡️',text:'Never quotes prices — routes all pricing to your team'}],
+    responses:{
+      abb:["✅ Yes, ABB is a line we carry.\n📋 ABB products we stock include:\n• ACS580 — general purpose VFDs (0.75–250kW)\n• ACS880 — industrial drives with full torque control\n• Motors, contactors, and switchgear\n📦 What frame size, HP, and voltage are you working with?"],
+      eaton:["✅ Yes, Eaton is a line we carry.\n📋 Eaton products include:\n• PowerXL DE1 — simple variable speed\n• PowerXL DG1 — full-featured industrial VFD\n• Breakers, panelboards, fusible disconnects, contactors\n📦 What product and specification are you looking for?"],
+      brands:["✅ Here are our main lines:\n\n⚡ Drives & Controls: ABB, Eaton PowerXL\n🔌 Wiring & Cable: Southwire, Atkore\n🔋 Terminal Blocks: Weidmüller\n🏠 Enclosures: Rittal, Techspan, Hammond\n🔧 Fusing: Eaton Bussmann\n💡 Lighting: RAB Design, Ledvance\n\n📦 What product are you looking to source?"],
+      pricing:["📋 Pricing depends on quantity, account type, and current market conditions.\n📧 What's the best email to send your quote to? Include the part number or spec if you have it.","📋 We don't publish list prices — our team provides quotes based on your volume and account.\n📧 What's the best email and the product you need priced?"],
+      stock:["📦 Stock levels and lead times are confirmed by our team — some items ship same day, others are 2–4 weeks.\n📧 What's the part number and quantity? Share the best email and we'll confirm availability."],
+      transformer:["✅ Yes, we carry dry-type transformers from Hammond Power Solutions and Marcus Transformer.\n📋 Common specs: 1-phase and 3-phase, 1 KVA to 1000 KVA, 208V / 240V / 480V / 600V primary\n📦 What KVA rating, primary voltage, and secondary voltage do you need?"],
+      enclosure:["✅ We carry Rittal and Techspan enclosures — steel, stainless steel, and fibreglass options.\n📦 What are the dimensions, material, and NEMA rating you need?"],
+      shipping:["📦 We offer local delivery, freight, and customer pickup depending on order size and location.\n📧 What's the best email and delivery address? Our team will confirm lead time and shipping options."],
+      nameplate:["📸 Great — to match the right drive to this motor, I need a few specs from the nameplate:\n\n• Horsepower (HP) or kW\n• Voltage (e.g. 460V, 575V)\n• Phase (1-phase or 3-phase)\n• Full Load Amps (FLA)\n• RPM\n\nShare those and I'll confirm the compatible drive from our ABB or Eaton lineup."],
+      general:["📋 Let me get our team to follow up on that directly.\n📧 What's the best name and email?","✅ That's something our team can help with.\n📧 What's the best email to follow up with you?"]
+    }
+  }
+};
+function demoPick(arr){return arr[Math.floor(Math.random()*arr.length)];}
+function demoGetResponse(text){
+  var msg=text.toLowerCase();
+  var p=demoPersonas[demoCurrentPersona];
+  var r=p.responses;
+  if(demoCurrentPersona==='contractor'){
+    if(msg.match(/spark|fire|smoke|burning|shock|emergency|urgent|right now|immediately|no power|circuit down/)) return demoPick(r.emergency);
+    if(msg.match(/panel|breaker|service entrance|disconnect|upgrade|replace/)) return demoPick(r.panel);
+    if(msg.match(/automat|plc|controls|building automat|bms|scada/)) return demoPick(r.automation);
+    if(msg.match(/area|location|serve|cover|where/)) return demoPick(r.area);
+    if(msg.match(/hour|open|available|schedule|when/)) return demoPick(r.hours);
+    if(msg.match(/price|cost|quote|estimate|how much/)) return demoPick(r.quote);
+    if(msg.match(/service|electrician|electrical work|repair|fix|troubleshoot/)) return demoPick(r.service);
+    if(msg.match(/new construct|rough.in|build|new build/)) return demoPick(r.new_construction);
+  } else {
+    if(msg.match(/transformer|kva|hammond|marcus/)) return demoPick(r.transformer);
+    if(msg.match(/abb|acs580|acs880|acs|motor drive/)) return demoPick(r.abb);
+    if(msg.match(/eaton|powerxl|de1|dg1/)) return demoPick(r.eaton);
+    if(msg.match(/enclosure|cabinet|panel board|box|rittal|techspan/)) return demoPick(r.enclosure);
+    if(msg.match(/ship|delivery|freight|courier|pickup/)) return demoPick(r.shipping);
+    if(msg.match(/nameplate|vfd|drive|motor size|hp|horsepower|fla|full load|frame/)) return demoPick(r.nameplate);
+    if(msg.match(/price|cost|quote|how much|pricing/)) return demoPick(r.pricing);
+    if(msg.match(/in stock|lead time|inventory|availability/)) return demoPick(r.stock);
+    if(msg.match(/brand|carry|catalog|what do you|what lines|what products/)) return demoPick(r.brands);
+  }
+  return demoPick(p.responses.general);
+}
+function demoAddMsg(text,role){
+  var p=demoPersonas[demoCurrentPersona];
+  var msgs=document.getElementById('demo-messages');
+  var d=document.createElement('div');
+  d.className='dmsg '+role+' '+p.theme;
+  d.innerHTML=role==='user'?text:text.replace(/\n/g,'<br>');
+  msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;
+}
+function demoShowTyping(){
+  var p=demoPersonas[demoCurrentPersona];
+  var msgs=document.getElementById('demo-messages');
+  var d=document.createElement('div');
+  d.className='demo-typing-ind '+p.theme;d.id='demo-typing-ind';
+  d.innerHTML='<div class="demo-typing-ind-dots"><span></span><span></span><span></span></div>';
+  msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;
+}
+function demoHideTyping(){var t=document.getElementById('demo-typing-ind');if(t)t.remove();}
+function demoEscape(str){return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+function demoSendMsg(text){
+  var input=document.getElementById('demo-input');
+  var msg=text||input.value.trim();
+  if(!msg||demoIsTyping)return;
+  input.value='';
+  demoAddMsg(demoEscape(msg).replace(/\n/g,'<br>'),'user');
+  demoIsTyping=true;demoShowTyping();
+  var delay=700+Math.random()*700;
+  setTimeout(function(){demoHideTyping();demoAddMsg(demoGetResponse(msg),'agent');demoIsTyping=false;},delay);
+}
+function demoResetChat(){
+  var msgs=document.getElementById('demo-messages');msgs.innerHTML='';
+  demoAddMsg(demoPersonas[demoCurrentPersona].welcome,'agent');
+}
+function demoUpdateHeader(){
+  var p=demoPersonas[demoCurrentPersona];
+  var header=document.getElementById('demo-chat-header');
+  header.className='demo-chat-header '+p.headerClass;
+  document.getElementById('demo-ch-avatar').className='dch-avatar '+p.headerClass;
+  document.getElementById('demo-ch-avatar').textContent=p.avatar;
+  document.getElementById('demo-ch-name').textContent=p.name;
+  document.getElementById('demo-input').className='demo-input '+p.inputClass;
+  document.getElementById('demo-send').className='demo-send '+p.sendClass;
+  var bar=document.getElementById('demo-faq-bar');bar.innerHTML='';
+  p.faqs.forEach(function(q){
+    var btn=document.createElement('button');
+    btn.className='demo-faq-pill '+p.pillClass;btn.textContent=q;
+    btn.onclick=function(){demoSendMsg(q);};bar.appendChild(btn);
+  });
+}
+function demoUpdateContext(){
+  var p=demoPersonas[demoCurrentPersona];
+  var panel=document.getElementById('demo-context-panel');
+  panel.innerHTML='<div class="context-tag">'+p.tag+'</div><h2>'+p.title+'</h2><p>'+p.desc+'</p><h3>Try asking</h3><div class="suggested-questions">'+p.faqs.slice(0,4).map(function(q){return'<button class="sq-btn" onclick="demoSendMsg(\''+q.replace(/'/g,"\\'")+'\')">' +q+'</button>';}).join('')+'</div><div class="what-mintt-shows"><h4>What this demo shows</h4>'+p.features.map(function(f){return'<div class="feature-pill-demo"><span class="icon">'+f.icon+'</span><span>'+f.text+'</span></div>';}).join('')+'</div>';
+}
+function demoSetPersona(persona){
+  demoCurrentPersona=persona;
+  document.getElementById('demo-btn-contractor').classList.toggle('active',persona==='contractor');
+  document.getElementById('demo-btn-distributor').classList.toggle('active',persona==='distributor');
+  demoResetChat();demoUpdateContext();demoUpdateHeader();
+}
+document.getElementById('demo-input').addEventListener('keypress',function(e){if(e.key==='Enter'){e.preventDefault();demoSendMsg();}});
+demoSetPersona('contractor');
+})();
+</script>
+
+<!-- PRICING -->
+<section class="pricing-hero-sec" id="pricing">
+  <div class="pricing-hero-inner">
+    <div class="section-label">Pricing</div>
+    <h2 style="font-size:clamp(36px,5vw,60px);font-weight:900;color:var(--white);letter-spacing:-2px;margin-bottom:16px;line-height:1.1;">Simple pricing.<br><span style="color:var(--green);">No surprises.</span></h2>
+    <p style="font-size:18px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:32px;">Start capturing leads today. Cancel anytime.</p>
+    <div class="toggle-wrap">
+      <button class="toggle-btn active" id="p-monthly-btn" onclick="pSetAnnual(false)">Monthly</button>
+      <button class="toggle-btn" id="p-annual-btn" onclick="pSetAnnual(true)">Annual <span class="save-badge">Save 20%</span></button>
+    </div>
+  </div>
+</section>
+<section class="plans">
+  <div class="plans-inner">
+    <div class="plans-grid">
+      <div class="plan">
+        <div class="plan-badge" style="background:rgba(0,201,107,0.15);color:var(--green);border:1px solid var(--green);font-size:11px;">14-Day Free Trial</div>
+        <div class="plan-name" style="margin-top:14px;">Starter</div>
+        <div class="plan-price">
+          <span class="price-amount" id="p-starter-price">$97</span>
+          <span class="price-period">/mo</span>
+        </div>
+        <div class="price-annual" id="p-starter-annual"></div>
+        <div class="plan-desc" style="font-size:13px;">Try free for 14 days — CC required, cancel before day 15 and you won't be charged.</div>
+        <ul class="plan-features">
+          <li><span class="check">✓</span> 1 business location</li>
+          <li><span class="check">✓</span> AI chat agent — 24/7</li>
+          <li><span class="check">✓</span> Lead capture &amp; scoring</li>
+          <li><span class="check">✓</span> Email notifications</li>
+          <li><span class="check">✓</span> Lead dashboard</li>
+          <li><span class="check">✓</span> Conversation history</li>
+          <li class="disabled"><span class="cross">✗</span> Image / photo analysis</li>
+          <li class="disabled"><span class="cross">✗</span> Voice agent</li>
+          <li class="disabled"><span class="cross">✗</span> Multiple locations</li>
+          <li class="disabled"><span class="cross">✗</span> White label branding</li>
+        </ul>
+        <a href="https://mintt-database-production.up.railway.app/login.html?signup=1" class="plan-cta outline">Get Started →</a>
+        <p style="font-size:11px;color:var(--grey);text-align:center;margin-top:10px;">Credit card required · Cancel anytime</p>
+      </div>
+      <div class="plan featured">
+        <div class="plan-badge">Most Popular</div>
+        <div class="plan-name">Growth</div>
+        <div class="plan-price">
+          <span class="price-amount" id="p-growth-price">$247</span>
+          <span class="price-period">/mo</span>
+        </div>
+        <div class="price-annual" id="p-growth-annual"></div>
+        <div class="plan-desc" style="font-size:13px;">Chat + AI voice agent. The full package for one growing business.</div>
+        <ul class="plan-features">
+          <li><span class="check">✓</span> Up to 3 locations</li>
+          <li><span class="check">✓</span> AI chat agent — 24/7</li>
+          <li><span class="check">✓</span> AI voice agent (Bland.ai)</li>
+          <li><span class="check">✓</span> Dedicated phone line</li>
+          <li><span class="check">✓</span> Lead capture &amp; scoring</li>
+          <li><span class="check">✓</span> Lead dashboard + analytics</li>
+          <li><span class="check">✓</span> Image &amp; photo analysis</li>
+          <li><span class="check">✓</span> Voice message upload</li>
+          <li><span class="check">✓</span> Customer confirmation emails</li>
+          <li class="disabled"><span class="cross">✗</span> White label branding</li>
+        </ul>
+        <a href="https://mintt-database-production.up.railway.app/login.html?signup=1" class="plan-cta solid">Get Started →</a>
+        <p style="font-size:11px;color:rgba(255,255,255,0.3);text-align:center;margin-top:10px;">Credit card required · Cancel anytime</p>
+      </div>
+      <div class="plan">
+        <div class="plan-name">Agency</div>
+        <div class="plan-price">
+          <span class="price-amount" id="p-agency-price">$597</span>
+          <span class="price-period">/mo</span>
+        </div>
+        <div class="price-annual" id="p-agency-annual"></div>
+        <div class="plan-desc" style="font-size:13px;">Unlimited clients, white label ready. Built for agencies and resellers.</div>
+        <ul class="plan-features">
+          <li><span class="check">✓</span> Unlimited locations / clients</li>
+          <li><span class="check">✓</span> AI chat agent — 24/7</li>
+          <li><span class="check">✓</span> AI voice agent (Bland.ai)</li>
+          <li><span class="check">✓</span> Multiple dedicated phone lines</li>
+          <li><span class="check">✓</span> Full analytics suite</li>
+          <li><span class="check">✓</span> Full conversation history</li>
+          <li><span class="check">✓</span> Image &amp; photo analysis</li>
+          <li><span class="check">✓</span> Voice message upload</li>
+          <li><span class="check">✓</span> Customer confirmation emails</li>
+          <li><span class="check">✓</span> White label — remove Mintt branding</li>
+        </ul>
+        <a href="https://mintt-database-production.up.railway.app/login.html?signup=1" class="plan-cta outline">Get Started →</a>
+        <p style="font-size:11px;color:var(--grey);text-align:center;margin-top:10px;">Credit card required · Cancel anytime</p>
+      </div>
+      <div class="plan" style="background:linear-gradient(160deg,#0a1f10,#0d2a18);border-color:rgba(0,201,107,0.3);">
+        <div class="plan-badge" style="background:rgba(0,201,107,0.2);color:var(--green);border:1px solid rgba(0,201,107,0.3);">Custom</div>
+        <div class="plan-name" style="color:rgba(255,255,255,0.5);margin-top:14px;">Enterprise</div>
+        <div class="plan-price">
+          <span class="price-amount" style="font-size:32px;color:var(--white);">Let's Talk</span>
+        </div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,0.08);line-height:1.6;">Fully custom to your business needs. Built, priced, and supported around you.</div>
+        <ul class="plan-features" style="margin-bottom:24px;">
+          <li style="color:rgba(255,255,255,0.8);"><span class="check">✓</span> Everything in Agency</li>
+          <li style="color:rgba(255,255,255,0.8);"><span class="check">✓</span> Custom AI training</li>
+          <li style="color:rgba(255,255,255,0.8);"><span class="check">✓</span> Dedicated account manager</li>
+          <li style="color:rgba(255,255,255,0.8);"><span class="check">✓</span> Custom integrations</li>
+          <li style="color:rgba(255,255,255,0.8);"><span class="check">✓</span> SLA &amp; uptime guarantee</li>
+          <li style="color:rgba(255,255,255,0.8);"><span class="check">✓</span> Volume pricing</li>
+          <li style="color:rgba(255,255,255,0.8);"><span class="check">✓</span> On-site setup available</li>
+        </ul>
+        <a href="#contact" class="plan-cta solid" style="background:var(--green);color:var(--black);">Contact Us →</a>
+        <p style="font-size:11px;color:rgba(255,255,255,0.25);text-align:center;margin-top:10px;">Response within 24 hours</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="pricing-faq">
+  <div class="pricing-faq-inner">
+    <h2>Common questions</h2>
+    <p>Everything you need to know before getting started.</p>
+    <div class="faq-item">
+      <div onclick="this.parentElement.classList.toggle('pfaq-open');this.nextElementSibling.style.display=this.parentElement.classList.contains('pfaq-open')?'block':'none';" style="font-size:16px;font-weight:600;color:var(--black);padding:20px 0 10px;cursor:pointer;display:flex;justify-content:space-between;">How long does setup take? <span style="color:var(--green);font-weight:300;font-size:20px;">+</span></div>
+      <div style="display:none;font-size:14px;color:var(--grey);line-height:1.7;padding-bottom:16px;">Most businesses are live within one hour. We add a single line of code to your existing website — no redesign, no downtime, no technical expertise required.</div>
+    </div>
+    <div class="faq-item">
+      <div onclick="this.parentElement.classList.toggle('pfaq-open');this.nextElementSibling.style.display=this.parentElement.classList.contains('pfaq-open')?'block':'none';" style="font-size:16px;font-weight:600;color:var(--black);padding:20px 0 10px;cursor:pointer;display:flex;justify-content:space-between;">Does it work with any website? <span style="color:var(--green);font-weight:300;font-size:20px;">+</span></div>
+      <div style="display:none;font-size:14px;color:var(--grey);line-height:1.7;padding-bottom:16px;">Yes. Mintt works with any website — Wix, WordPress, Squarespace, custom HTML, Shopify, or anything else. If it has a website, we can add Mintt.</div>
+    </div>
+    <div class="faq-item">
+      <div onclick="this.parentElement.classList.toggle('pfaq-open');this.nextElementSibling.style.display=this.parentElement.classList.contains('pfaq-open')?'block':'none';" style="font-size:16px;font-weight:600;color:var(--black);padding:20px 0 10px;cursor:pointer;display:flex;justify-content:space-between;">What happens when a lead comes in? <span style="color:var(--green);font-weight:300;font-size:20px;">+</span></div>
+      <div style="display:none;font-size:14px;color:var(--grey);line-height:1.7;padding-bottom:16px;">You receive an instant email with the customer's name, contact details, and the full conversation — scored HOT or COLD. Your dashboard updates in real time. You just follow up and close.</div>
+    </div>
+    <div class="faq-item">
+      <div onclick="this.parentElement.classList.toggle('pfaq-open');this.nextElementSibling.style.display=this.parentElement.classList.contains('pfaq-open')?'block':'none';" style="font-size:16px;font-weight:600;color:var(--black);padding:20px 0 10px;cursor:pointer;display:flex;justify-content:space-between;">Can I cancel anytime? <span style="color:var(--green);font-weight:300;font-size:20px;">+</span></div>
+      <div style="display:none;font-size:14px;color:var(--grey);line-height:1.7;padding-bottom:16px;">Yes. No long-term contracts. Cancel anytime from your dashboard. We don't believe in locking businesses in — we believe in earning your business every month.</div>
+    </div>
+    <div class="faq-item">
+      <div onclick="this.parentElement.classList.toggle('pfaq-open');this.nextElementSibling.style.display=this.parentElement.classList.contains('pfaq-open')?'block':'none';" style="font-size:16px;font-weight:600;color:var(--black);padding:20px 0 10px;cursor:pointer;display:flex;justify-content:space-between;">Is my customer data private? <span style="color:var(--green);font-weight:300;font-size:20px;">+</span></div>
+      <div style="display:none;font-size:14px;color:var(--grey);line-height:1.7;padding-bottom:16px;">Absolutely. All data is stored on Canadian servers and never sold or shared with third parties. We are compliant with PIPEDA (Canada's federal privacy law).</div>
+    </div>
+    <div class="faq-item" style="border-bottom:none;">
+      <div onclick="this.parentElement.classList.toggle('pfaq-open');this.nextElementSibling.style.display=this.parentElement.classList.contains('pfaq-open')?'block':'none';" style="font-size:16px;font-weight:600;color:var(--black);padding:20px 0 10px;cursor:pointer;display:flex;justify-content:space-between;">Do you offer a free trial? <span style="color:var(--green);font-weight:300;font-size:20px;">+</span></div>
+      <div style="display:none;font-size:14px;color:var(--grey);line-height:1.7;padding-bottom:16px;">The Starter plan includes a 14-day free trial. We also offer a free live demo where we show you exactly how Mintt works with your business — book one below, it takes 20 minutes and there's no commitment.</div>
+    </div>
+  </div>
+</section>
+<script>
+var pIsAnnual=false;
+var pPrices={starter:[97,78],growth:[247,198],agency:[597,478]};
+function pSetAnnual(annual){
+  pIsAnnual=annual;
+  document.getElementById('p-monthly-btn').classList.toggle('active',!annual);
+  document.getElementById('p-annual-btn').classList.toggle('active',annual);
+  ['starter','growth','agency'].forEach(function(p){
+    var idx=annual?1:0;
+    document.getElementById('p-'+p+'-price').textContent='$'+pPrices[p][idx];
+    document.getElementById('p-'+p+'-annual').textContent=annual?('Save $'+((pPrices[p][0]-pPrices[p][1])*12)+'/yr'):'';
+  });
+}
+</script>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-sec">
+  <div class="contact-sec-inner">
+    <div>
+      <div class="section-label">Book a Demo</div>
+      <h2 style="font-size:clamp(32px,4vw,52px);font-weight:900;color:#fff;letter-spacing:-2px;margin-bottom:20px;line-height:1.1;">See Mintt <span style="color:var(--green);">closing jobs</span> for you.</h2>
+      <p class="contact-desc">20 minutes. No commitment. We'll show you exactly how Mintt would work on your website — live, with your business name and trade.</p>
+      <div class="what-to-expect">
+        <div class="expect-item">
+          <div class="expect-num">1</div>
+          <div><h4>We set up a live demo agent</h4><p>You'll see a real Mintt agent — trained on your trade — handle an actual customer conversation.</p></div>
+        </div>
+        <div class="expect-item">
+          <div class="expect-num">2</div>
+          <div><h4>We walk through the dashboard</h4><p>See how leads come in, get scored, and land in your inbox — in real time.</p></div>
+        </div>
+        <div class="expect-item">
+          <div class="expect-num">3</div>
+          <div><h4>We answer your questions</h4><p>Pricing, setup, your specific business needs — we cover it all. No pressure, no sales pitch.</p></div>
+        </div>
+        <div class="expect-item">
+          <div class="expect-num">4</div>
+          <div><h4>You're live within the hour</h4><p>If you decide to move forward, we can have Mintt on your website before the call ends.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form-wrap">
+      <div id="contact-form-state">
+        <h2>Let's get you set up.</h2>
+        <p>Fill in the details below and we'll reach out within 24 hours to book your demo.</p>
+        <form onsubmit="handleContactSubmit(event)">
+          <div class="form-row">
+            <div class="form-group"><label>First name *</label><input type="text" name="first_name" placeholder="John" required></div>
+            <div class="form-group"><label>Last name *</label><input type="text" name="last_name" placeholder="Smith" required></div>
+          </div>
+          <div class="form-group"><label>Business email *</label><input type="email" name="email" id="contact-sec-email" placeholder="john@yourbusiness.com" required></div>
+          <div class="form-group"><label>Phone number</label><input type="tel" name="phone" placeholder="(416) 555-0100"></div>
+          <div class="form-group"><label>Business name *</label><input type="text" name="business_name" placeholder="Acme Electrical Inc." required></div>
+          <div class="form-group">
+            <label>Your trade / industry *</label>
+            <select name="trade" required>
+              <option value="" disabled selected>Select your trade</option>
+              <option>Electrician</option>
+              <option>Plumber</option>
+              <option>HVAC</option>
+              <option>General Contractor</option>
+              <option>Electrical Distributor</option>
+              <option>Property Manager</option>
+              <option>Auto &amp; Fleet</option>
+              <option>Supplier / Wholesaler</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Anything else we should know?</label><textarea name="message" placeholder="e.g. I have 3 locations, I want to see the voice agent, etc."></textarea></div>
+          <button type="submit" class="form-submit" id="contact-submit-btn">Book My Free Demo →</button>
+          <p class="form-note">We'll respond within 24 hours · office@mintt.ca</p>
+        </form>
+        <div class="cal-placeholder">
+          <div style="font-size:36px;">📅</div>
+          <h4>Prefer to pick a time now?</h4>
+          <p>Submit the form above — we'll reach out within 24 hours.</p>
+          <a href="mailto:office@mintt.ca">Email us → office@mintt.ca</a>
+        </div>
+      </div>
+      <div class="contact-success" id="contact-success-state">
+        <div class="success-icon">🎉</div>
+        <h2>We'll be in touch!</h2>
+        <p>Thanks for reaching out. The Mintt team will contact you at <strong id="contact-confirm-email"></strong> within 24 hours to book your demo.</p>
+        <a href="#" style="display:inline-block;margin-top:24px;background:var(--green);color:#080f0a;padding:12px 24px;border-radius:10px;font-weight:700;text-decoration:none;">Back to Top ↑</a>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+function handleContactSubmit(e){
+  e.preventDefault();
+  var btn=document.getElementById('contact-submit-btn');
+  var email=document.getElementById('contact-sec-email').value;
+  btn.textContent='Sending...';btn.disabled=true;
+  var form=e.target;
+  fetch('https://formsubmit.co/ajax/office@mintt.ca',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({
+      first_name:form.first_name.value,last_name:form.last_name.value,
+      email:email,phone:form.phone.value,
+      business_name:form.business_name.value,trade:form.trade.value,
+      message:form.message.value,_subject:'New Mintt Demo Request'
+    })
+  })
+  .then(function(){showContactSuccess(email);})
+  .catch(function(){showContactSuccess(email);});
+}
+function showContactSuccess(email){
+  document.getElementById('contact-confirm-email').textContent=email;
+  document.getElementById('contact-form-state').style.display='none';
+  document.getElementById('contact-success-state').classList.add('show');
+}
+</script>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-logo">mintt<span>.</span>ca</div>
     <div class="footer-links">
-      <a href="pricing.html">Pricing</a>
-      <a href="demo.html">Live Demo</a>
-    <a href="voice.html">Voice</a>
-    <a href="contact.html">Contact</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#demo">Live Demo</a>
+    <a href="#voice">Voice</a>
+    <a href="#contact">Contact</a>
       <a href="terms.html">Terms of Service</a>
       <a href="privacy.html">Privacy Policy</a>
     </div>
