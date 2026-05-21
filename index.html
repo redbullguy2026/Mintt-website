@@ -579,6 +579,62 @@ footer{background:var(--off-black);padding:48px 40px 32px;border-top:1px solid r
   .social-proof-bar{gap:10px;padding:8px 16px;}
   .spb-div{display:none !important;}
   .spb-info{display:none !important;}
+
+  /* ── UNIVERSAL SECTION PADDING ── */
+  section{padding-left:20px !important;padding-right:20px !important;}
+  .hero{padding-left:24px !important;padding-right:24px !important;padding-top:100px !important;padding-bottom:60px !important;}
+
+  /* ── VERTICAL PADDING REDUCTIONS ── */
+  .how{padding-top:60px !important;padding-bottom:60px !important;}
+  .features{padding-top:60px !important;padding-bottom:60px !important;}
+  .proof{padding-top:60px !important;padding-bottom:60px !important;}
+  .problem{padding-top:60px !important;padding-bottom:60px !important;}
+  .chat-preview{padding-top:48px !important;padding-bottom:48px !important;}
+  .cta-section{padding-top:60px !important;padding-bottom:60px !important;}
+  .pricing-hero-sec{padding-top:60px !important;padding-bottom:36px !important;}
+  .plans{padding-top:40px !important;padding-bottom:60px !important;}
+  .pricing-faq{padding-top:40px !important;padding-bottom:60px !important;}
+  .contact-sec{padding-top:60px !important;padding-bottom:40px !important;}
+  #demo{padding-top:60px !important;padding-bottom:60px !important;}
+
+  /* ── HOW IT WORKS: single column ── */
+  .steps{grid-template-columns:1fr !important;}
+
+  /* ── HERO STATS ── */
+  .hero-stats{gap:16px !important;}
+
+  /* ── DASHBOARD: wrap stat row ── */
+  .dash-stat-row{flex-wrap:wrap !important;gap:12px !important;justify-content:center !important;}
+
+  /* ── VOICE: stack two-col, center notify strip ── */
+  .voice-two-col{grid-template-columns:1fr !important;gap:32px !important;}
+  .voice-notify-strip{flex-direction:column !important;text-align:center !important;padding:24px 20px !important;}
+  .voice-notify-strip a{align-self:center;}
+
+  /* ── COMPARISON TABLE: horizontal scroll ── */
+  .cmp-scroll-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:16px;}
+  .cmp-scroll-wrap > div,
+  .cmp-scroll-wrap .cmp-row{min-width:500px;}
+
+  /* ── ROI CALCULATOR: single column ── */
+  .roi-inner-card{padding:24px !important;}
+  .roi-grid{grid-template-columns:1fr !important;gap:24px !important;}
+  .roi-results{position:static !important;}
+
+  /* ── LIVE STATS TICKER: 2×2 grid ── */
+  .stats-ticker-inner{grid-template-columns:1fr 1fr !important;gap:16px !important;}
+
+  /* ── PRICING: single column, no featured lift ── */
+  .plans-grid{grid-template-columns:1fr !important;}
+  .plan.featured{transform:none !important;}
+
+  /* ── TAP TARGETS ── */
+  .btn-primary,.btn-ghost,.plan-cta,.form-submit,.price-btn{min-height:44px !important;}
+  .toggle-btn{min-height:40px !important;}
+
+  /* ── DEMO SECTION ── */
+  .demo-note-banner{margin-bottom:28px !important;}
+  .persona-btn{padding:10px 16px !important;font-size:13px !important;}
 }
 #mobile-nav{display:none;position:fixed;top:68px;left:0;right:0;z-index:99;background:rgba(255,255,255,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);flex-direction:column;padding:8px 24px 20px;}
 #mobile-nav.open{display:flex;}
@@ -960,7 +1016,7 @@ function toggleMobileNav(){
           <span style="font-size:13px;font-weight:700;color:var(--white);">Lead Dashboard</span>
           <span style="background:rgba(0,201,107,0.15);color:var(--green);font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;border:1px solid rgba(0,201,107,0.2);">● Live</span>
         </div>
-        <div style="display:flex;gap:24px;">
+        <div class="dash-stat-row" style="display:flex;gap:24px;">
           <div style="text-align:center;"><div style="font-size:22px;font-weight:800;color:var(--green);">12</div><div style="font-size:11px;color:rgba(255,255,255,0.3);">Total Leads</div></div>
           <div style="text-align:center;"><div style="font-size:22px;font-weight:800;color:#ff6b6b;">4</div><div style="font-size:11px;color:rgba(255,255,255,0.3);">Hot Leads</div></div>
           <div style="text-align:center;"><div style="font-size:22px;font-weight:800;color:var(--green);">$8,400</div><div style="font-size:11px;color:rgba(255,255,255,0.3);">Revenue Won</div></div>
@@ -1231,7 +1287,7 @@ function runPreview() {
         <a href="#voice" style="display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#080f0a;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;margin-bottom:60px;">See Mintt Voice →</a>
 
     <!-- Two-col layout -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
+    <div class="voice-two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
 
       <!-- Left: feature list -->
       <div style="display:flex;flex-direction:column;gap:20px;">
@@ -1347,7 +1403,7 @@ function runPreview() {
     </div>
 
     <!-- Notify strip -->
-    <div style="margin-top:48px;background:var(--black);border-radius:16px;padding:28px 36px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;border:1px solid rgba(0,201,107,0.15);">
+    <div class="voice-notify-strip" style="margin-top:48px;background:var(--black);border-radius:16px;padding:28px 36px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;border:1px solid rgba(0,201,107,0.15);">
       <div>
         <div style="font-size:18px;font-weight:800;color:white;letter-spacing:-0.3px;">Be first in line when it launches.</div>
         <div style="font-size:14px;color:rgba(255,255,255,0.4);margin-top:4px;">Early access for existing Mintt clients. Join the waitlist today.</div>
@@ -1362,7 +1418,7 @@ function runPreview() {
   <div style="max-width:900px;margin:0 auto;">
     <div class="section-label" style="text-align:center;">Why Mintt</div>
     <div class="section-title" style="text-align:center;margin-bottom:48px;">Built for trades.<br>Not generic software.</div>
-    <div style="border-radius:20px;overflow:hidden;border:1px solid var(--border);box-shadow:0 12px 40px rgba(0,0,0,0.06);">
+    <div class="cmp-scroll-wrap" style="border-radius:20px;overflow:hidden;border:1px solid var(--border);box-shadow:0 12px 40px rgba(0,0,0,0.06);">
       <!-- Header row -->
       <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;background:var(--black);padding:20px 28px;">
         <div style="font-size:13px;color:rgba(255,255,255,.35);font-weight:600;text-transform:uppercase;letter-spacing:.06em;">Feature</div>
@@ -1458,8 +1514,8 @@ function runPreview() {
     <div class="section-label" style="text-align:center;">ROI Calculator</div>
     <div class="section-title" style="text-align:center;margin-bottom:8px;">How much is your website<br>costing you right now?</div>
     <p style="text-align:center;font-size:16px;color:var(--grey);margin-bottom:52px;">Drag the sliders to see your estimated monthly opportunity.</p>
-    <div style="background:var(--white);border-radius:24px;border:1px solid var(--border);padding:44px;box-shadow:0 16px 48px rgba(0,0,0,0.06);">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
+    <div class="roi-inner-card" style="background:var(--white);border-radius:24px;border:1px solid var(--border);padding:44px;box-shadow:0 16px 48px rgba(0,0,0,0.06);">
+      <div class="roi-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
         <!-- Sliders -->
         <div>
           <style>
@@ -1482,7 +1538,7 @@ function runPreview() {
           <input type="range" class="roi-slider" id="sl-conv" min="1" max="10" step="1" value="2">
         </div>
         <!-- Results -->
-        <div style="background:var(--black);border-radius:18px;padding:32px;color:white;position:sticky;top:100px;">
+        <div class="roi-results" style="background:var(--black);border-radius:18px;padding:32px;color:white;position:sticky;top:100px;">
           <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:20px;">Your monthly opportunity</div>
           <div style="margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.07);">
             <div style="font-size:13px;color:rgba(255,255,255,.45);margin-bottom:4px;">Leads you're missing today</div>
@@ -1536,7 +1592,7 @@ function runPreview() {
 
 <!-- LIVE STATS TICKER -->
 <section style="padding:60px 40px;background:var(--black);border-top:1px solid rgba(0,201,107,0.1);border-bottom:1px solid rgba(0,201,107,0.1);">
-  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;">
+  <div class="stats-ticker-inner" style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;">
     <div>
       <div style="font-size:42px;font-weight:900;color:var(--green);letter-spacing:-2px;" id="cnt-leads">0</div>
       <div style="font-size:13px;color:rgba(255,255,255,.4);margin-top:6px;">Leads captured this week</div>
