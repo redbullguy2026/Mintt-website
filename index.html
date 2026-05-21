@@ -570,7 +570,13 @@ footer{background:var(--off-black);padding:48px 40px 32px;border-top:1px solid r
 
 /* ── MOBILE NAV ── */
 #mobile-menu-btn{display:none;background:transparent;border:none;font-size:24px;cursor:pointer;color:var(--black);padding:4px 6px;line-height:1;flex-shrink:0;}
-@media(max-width:768px){#mobile-menu-btn{display:flex;align-items:center;justify-content:center;}}
+@media(max-width:768px){
+  #mobile-menu-btn{display:flex;align-items:center;justify-content:center;}
+  #nav-login,#nav-dashboard,#nav-user-pill{display:none !important;}
+  .social-proof-bar{gap:10px;padding:8px 16px;}
+  .spb-div{display:none !important;}
+  .spb-info{display:none !important;}
+}
 #mobile-nav{display:none;position:fixed;top:68px;left:0;right:0;z-index:99;background:rgba(255,255,255,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);flex-direction:column;padding:8px 24px 20px;}
 #mobile-nav.open{display:flex;}
 #mobile-nav a{font-size:16px;font-weight:500;color:var(--grey);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--border);transition:color .2s;}
@@ -629,14 +635,14 @@ function toggleMobileNav(){
 
 <!-- SOCIAL PROOF BAR -->
 <div class="social-proof-bar" style="position:relative;z-index:98;background:rgba(0,201,107,0.08);border-bottom:1px solid rgba(0,201,107,0.15);padding:10px 40px;display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;margin-top:68px;">
-  <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,0.7);">
+  <div class="spb-info" style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,0.7);">
     <span style="color:#00c96b;font-weight:700;">⚡</span> Live on client websites across Ontario
   </div>
-  <div style="width:1px;height:16px;background:rgba(255,255,255,0.1);"></div>
-  <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,0.7);">
+  <div class="spb-div spb-info" style="width:1px;height:16px;background:rgba(255,255,255,0.1);"></div>
+  <div class="spb-info" style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,0.7);">
     <span style="color:#00c96b;font-weight:700;">🔒</span> PIPEDA compliant · Canadian data storage
   </div>
-  <div style="width:1px;height:16px;background:rgba(255,255,255,0.1);"></div>
+  <div class="spb-div spb-info" style="width:1px;height:16px;background:rgba(255,255,255,0.1);"></div>
   <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,0.7);">
     <span style="color:#00c96b;font-weight:700;">📅</span> <a href="#contact" style="color:#00c96b;font-weight:600;text-decoration:none;">Book a free demo →</a>
   </div>
