@@ -166,8 +166,9 @@ footer{background:var(--off-black);padding:48px 40px 32px;border-top:1px solid r
   .footer-links{flex-wrap:wrap;justify-content:center;}
 }
 @media(max-width:600px){
-  .notify-badge-float{display:none;}
-  .cmp-header,.cmp-row{padding:10px 8px;}
+  .notify-badge-float{display:none !important;}
+  .cmp-scroll-wrap > div,.cmp-scroll-wrap .cmp-row{min-width:0 !important;}
+  .cmp-header,.cmp-row{padding:10px 8px !important;}
   .cmp-header div{white-space:normal;word-break:break-word;font-size:11px;}
 }
 
