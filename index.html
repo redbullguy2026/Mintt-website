@@ -165,6 +165,11 @@ footer{background:var(--off-black);padding:48px 40px 32px;border-top:1px solid r
   .footer-inner{flex-direction:column;text-align:center;}
   .footer-links{flex-wrap:wrap;justify-content:center;}
 }
+@media(max-width:600px){
+  .notify-badge-float{display:none;}
+  .cmp-header,.cmp-row{padding:10px 8px;}
+  .cmp-header div{white-space:normal;word-break:break-word;font-size:11px;}
+}
 
 /* ── DARK MODE VARS ── */
 :root,[data-theme="light"]{
@@ -1392,7 +1397,7 @@ function runPreview() {
         </div>
 
         <!-- Notify badge floating -->
-        <div style="position:absolute;top:-16px;right:-16px;background:white;border-radius:12px;padding:10px 14px;box-shadow:0 8px 28px rgba(0,0,0,0.12);border:1px solid var(--border);display:flex;align-items:center;gap:8px;z-index:2;">
+        <div class="notify-badge-float" style="position:absolute;top:-16px;right:-16px;background:white;border-radius:12px;padding:10px 14px;box-shadow:0 8px 28px rgba(0,0,0,0.12);border:1px solid var(--border);display:flex;align-items:center;gap:8px;z-index:2;">
           <span style="font-size:18px;">📲</span>
           <div>
             <div style="font-size:12px;font-weight:700;color:var(--black);">Alert sent to you</div>
@@ -1419,8 +1424,9 @@ function runPreview() {
     <div class="section-label" style="text-align:center;">Why Mintt</div>
     <div class="section-title" style="text-align:center;margin-bottom:48px;">Built for trades.<br>Not generic software.</div>
     <div class="cmp-scroll-wrap" style="border-radius:20px;overflow:hidden;border:1px solid var(--border);box-shadow:0 12px 40px rgba(0,0,0,0.06);">
+
       <!-- Header row -->
-      <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;background:var(--black);padding:20px 28px;">
+      <div class="cmp-header" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;background:var(--black);padding:20px 28px;">
         <div style="font-size:13px;color:rgba(255,255,255,.35);font-weight:600;text-transform:uppercase;letter-spacing:.06em;">Feature</div>
         <div style="text-align:center;">
           <div style="font-size:15px;font-weight:800;color:var(--green);">Mintt</div>
